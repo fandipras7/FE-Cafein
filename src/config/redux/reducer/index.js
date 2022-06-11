@@ -1,9 +1,9 @@
-// import {combineReducers} from 'redux'
-// import productReducer from './product'
+import {combineReducers} from 'redux'
 
-// const rootReducer = combineReducers({
-//     product: productReducer,
 
-// })
+const rootReducer = combineReducers({
+    
 
-// export default rootReducer
+})
+
+export default rootReducer
