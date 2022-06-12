@@ -1,0 +1,51 @@
+.rect_purp {
+  width: 98px;
+  height: 98px;
+  background-color: #5e50a1;
+  border-radius: 10px;
+  position: absolute;
+  top: -50px;
+  right: -50px;
+}
+
+/* .positionPurp_1 {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+} */
+
+.rect_orange {
+  width: 46px;
+  height: 46px;
+  background-color: #fbb017;
+  border-radius: 10px;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+/* .positionOra_1 {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+} */
+
+.rect_purp_2 {
+  width: 107px;
+  height: 106px;
+  background-color: #5e50a1;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0px;
+  left: 25%;
+}
+
+.rect_orange_2 {
+  width: 46px;
+  height: 46px;
+  background-color: #fbb017;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0px;
+  left: 38%;
+}

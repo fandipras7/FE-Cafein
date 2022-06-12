@@ -1,18 +1,17 @@
-// const initialState = {
-//     products: [],
+const initialState = {
+  products: [],
+};
 
-// }
+const productReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "GET_PRODUCT":
+      return {
+        ...state,
+        products: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
-// const productReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//       case "GET_PRODUCT":
-//         return {
-//           ...state,
-//           products: action.payload,
-//         };
-//       default:
-//         return state;
-//     }
-//   };
- 
-//   export default productReducer;
+export default productReducer;
