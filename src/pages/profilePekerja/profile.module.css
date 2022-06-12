@@ -1,0 +1,14 @@
+.btnInput {
+  position: absolute;
+  bottom: 0;
+  right: 100px;
+  background-color: #5e50a1;
+  border: none;
+  color: white;
+}
+
+.ava {
+  position: absolute;
+  bottom: -50px;
+  left: 180px;
+}

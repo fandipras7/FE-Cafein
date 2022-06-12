@@ -19,15 +19,6 @@ const Navbar = ({ className, ...props }) => {
           <div className="mt-2">
             {isLogin ? (
               <ul>
-                <li>
-                  <Button btn="btnMasuk" title="Masuk"></Button>
-                </li>
-                <li className="ms-4">
-                  <Button btn="btnDaftar" title="Daftar"></Button>
-                </li>
-              </ul>
-            ) : (
-              <ul>
                 <li className=" mt-1">
                   <Button btn="btnAva" title={<img src={bell} alt="" />}></Button>
                 </li>
@@ -36,6 +27,15 @@ const Navbar = ({ className, ...props }) => {
                 </li>
                 <li className="ms-2">
                   <Button btn="btnAva" title={<img src={ava} alt="" />}></Button>
+                </li>
+              </ul>
+            ) : (
+              <ul>
+                <li>
+                  <Button btn="btnMasuk" title="Masuk"></Button>
+                </li>
+                <li className="ms-4">
+                  <Button btn="btnDaftar" title="Daftar"></Button>
                 </li>
               </ul>
             )}
