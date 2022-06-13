@@ -1,10 +1,11 @@
 import React from "react";
+import logo from "./logo.png";
 
 const Footer = ({ className, backgroundColor, ...props }) => {
   return (
     <div className={className} style={{ backgroundColor: backgroundColor, marginTop: props.marginTop }} {...props}>
       <div>
-        <img src="" alt="" />
+        <img src={logo} alt="" />
       </div>
       <p className="text-light mt-4">
         Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit. In euismod ipsum et dui <br />
