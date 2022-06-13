@@ -1,0 +1,10 @@
+.background {
+  width: 100%;
+  background-color: #5e50a1;
+  height: 300px;
+}
+
+hr {
+  background-color: black;
+  margin-top: -2px;
+}
