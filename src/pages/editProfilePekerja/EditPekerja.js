@@ -6,16 +6,18 @@ import ava from "./img/ava.png";
 import ButtonAlter from "../../components/Base/ButtonAlter";
 import Label from "../../components/Base/Label";
 import Input from "../../components/Base/Input";
+import Footer from "../../components/Module/footer";
+import uploadImage from "./img/backimg.PNG";
 
 const EditPekerja = () => {
   return (
     <div>
       <Navbar isLogin={true}></Navbar>
       <main>
-        <div className="container-fluid vh-100 bg-light">
-          <div className="row flex-column bg-primary positon-relative">
-            <div className={"col-12 " + styles.background}></div>
-            <div className="col-12 position-absolute mt-5">
+        <div className="container-fluid bg-light positon-relative">
+          <div className={"col-12 position-absolute " + styles.background}></div>
+          <div className="row flex-column">
+            <div className="col-12  mt-5">
               <div className="container">
                 <div className="row">
                   <div className="col-4">
@@ -62,7 +64,7 @@ const EditPekerja = () => {
                         </div>
                       </div>
                     </Card>
-                    <Card width="100%">
+                    <Card className="mt-2" width="100%">
                       <h4>Pengalaman Kerja</h4>
                       <hr />
                       <Label className="mt-2" title="Posisi"></Label>
@@ -78,6 +80,41 @@ const EditPekerja = () => {
                         </div>
                       </div>
                       <textarea name="deskripsi" style={{ height: "100px" }} id="" className="form-control"></textarea>
+                      <hr className={styles.hr2} />
+                    </Card>
+                    <Card className="mt-2" width="100%">
+                      <h4>Portofolio</h4>
+                      <hr />
+                      <Label className="mt-2" title="Nama Aplikasi"></Label>
+                      <Input css="input-form" placeholder="Masukan Nama Aplikasi"></Input>
+                      <Label className="mt-2" title="Link Repository"></Label>
+                      <Input css="input-form" placeholder="Masukan Link Repository"></Input>
+                      <div className="row">
+                        <Label className="mt-2" title="type portfolio"></Label>
+                        <div className="col-sm-6">
+                          <div style={{ border: "1px solid black" }} className="form-check form-check-inline p-2">
+                            <input className="form-check-input ms-2" type="radio" name="inlineRadioOptions" /* checked={condition === "Baru"} */ id="inlineRadio1" value="Baru" /* onChange={(e) => setCondition(e.target.value)} */ />
+                            <label className="form-check-label ms-2" for="inlineRadio1">
+                              Aplikasi Mobile
+                            </label>
+                          </div>
+                          <div className="form-check form-check-inline p-2 ms-5">
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" /* checked={condition === "Bekas"} */ id="inlineRadio2" value="Bekas" /* onChange={(e) => setCondition(e.target.value)} */ />
+                            <label className="form-check-label" for="inlineRadio2">
+                              Aplikasi Web
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <Label className="mt-2" title="upload gambar"></Label>
+                      <div>
+                        <img className="img-fluid" src={uploadImage} alt="" />
+                        <input type="file" className="form-control btn" accept="image/" /*onChange={(e) => uploadImage(e)} */ />
+                      </div>
+                      <hr className={styles.hr2} />
+                      <ButtonAlter className="p-2 w-100" backgroundColor="white" border="1px solid #FBB017">
+                        Tambah Portofolio
+                      </ButtonAlter>
                     </Card>
                   </div>
                 </div>
@@ -86,6 +123,7 @@ const EditPekerja = () => {
           </div>
         </div>
       </main>
+      <Footer className="px-5 py-2"></Footer>
     </div>
   );
 };

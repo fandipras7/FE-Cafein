@@ -2,7 +2,7 @@ import React from "react";
 
 const Card = ({ img, titleImg, width, children, ...props }) => {
   return (
-    <div className="card" style={{ width: width }}>
+    <div className="card mt-4" style={{ width: width }}>
       <div className="text-center">
         <img src={img} className="img-fluid text-center" alt="" />
         <p className="text-center">{titleImg}</p>
