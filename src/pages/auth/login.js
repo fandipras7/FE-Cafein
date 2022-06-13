@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../config/redux/actions/userAction'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import './auth.css'
 import style from './login.module.css'
 import { Input, Button } from '../../components/index'
@@ -13,22 +14,47 @@ const Login = () => {
     const { isLoading } = useSelector((state) => state.user)
     const [formLogin, setFormLogin] = useState(
         {
-        email: "",
-        password: "",
-      })
+            email: "",
+            password: "",
+        })
 
     const handleChange = (e) => {
         setFormLogin({
-          ...formLogin,
-          [e.target.name]: e.target.value
+            ...formLogin,
+            [e.target.name]: e.target.value
         })
-    
-      }
-    
-      const handleLogin = (e) => {
+
+    }
+
+    const handleLogin = (e) => {
         e.preventDefault()
-        dispatch(loginUser(formLogin, navigate))
-      }
+        dispatch(loginUser(formLogin))
+            .then((res) => {
+                localStorage.setItem('token', res.data.data.token)
+                localStorage.setItem('refreshToken', res.data.data.refreshToken)
+                console.log(res.data);
+                if (res.data.data.role === 'Recruiter') {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: res.data.message,
+                        showConfirmButton: false,
+                    })
+                    navigate('/home')
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: res.data.message,
+                        showConfirmButton: false,
+                    })
+                    navigate('/home')
+                }
+            })
+            .catch((err) => {
+                Swal.fire("", err.response.data.message, "error");
+            })
+    }
 
     return (
         <div className={style["main-login"]}>
@@ -42,8 +68,8 @@ const Login = () => {
                     <p className='mt-4 text-muted p-0 m-0'>Kata Sandi</p>
                     <Input css='inputAuth' type='password' placeholder='Masukkan kata sandi' name="password" value={formLogin.password} onChange={(e) => handleChange(e)} />
                     <p className='d-flex justify-content-end mt-3'>Lupa kata sandi?</p>
-                    {isLoading ? <Button  title='Loading...' btn='btn-auth' /> : <Button onClick={(e) => handleLogin(e)} title='Masuk' btn='btn-auth' />}
-                    <p className='d-flex justify-content-center mt-3'>Anda belum punya akun?<span onClick={()=>navigate('/registerUser')} className="register-sub">&nbsp;Daftar disini</span></p>
+                    {isLoading ? <Button title='Loading...' btn='btn-auth' /> : <Button onClick={(e) => handleLogin(e)} title='Masuk' btn='btn-auth' />}
+                    <p className='d-flex justify-content-center mt-3'>Anda belum punya akun?<span onClick={() => navigate('/registerUser')} className="register-sub">&nbsp;Daftar disini</span></p>
                 </form>
             </div>
         </div>
