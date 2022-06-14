@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "../../components/Module/navbar";
 import Footer from "../../components/Module/footer";
 import styles from "./hire.module.css";
-import Card from "../../components/Base/card";
+// import Card from "../../components/Base/CardAlter";
+import CardAlter from "../../components/Base/CardAlter";
 import ava from "../editProfilePekerja/img/ava.png";
 import ButtonAlter from "../../components/Base/ButtonAlter";
 import Label from "../../components/Base/Label";
@@ -17,7 +18,7 @@ const Hire = () => {
           <div className="container">
             <div className="row">
               <div className="col-4">
-                <Card img={ava} textPosition="text-start" titleImg="Edit" width="100%">
+                <CardAlter img={ava} textPosition="text-start" titleImg="Edit" width="100%">
                   <p className="fs-5 fw-bold">Louis Tomlinson</p>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci.</p>
                   <p className="fw-light">Purwokerto, Jawa Tengah</p>
@@ -56,7 +57,7 @@ const Hire = () => {
                       <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Swift" border="none"></ButtonAlter>
                     </td>
                   </div>
-                </Card>
+                </CardAlter>
               </div>
               <div className="col-8 mt-3">
                 <p className="fs-3 text-center">Hubungi Lous Tomlinson</p>
