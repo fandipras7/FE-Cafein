@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({ img, titleImg, width, children, ...props }) => {
+const CardAlter = ({ img, titleImg, width, children, ...props }) => {
   return (
     <div className="card mt-4" style={{ width: width }}>
       <div className="text-center">
@@ -27,4 +27,4 @@ const Card = ({ img, titleImg, width, children, ...props }) => {
 //   borderRadius: "8px",
 // };
 
-export default Card;
+export default CardAlter;

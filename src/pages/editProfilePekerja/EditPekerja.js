@@ -1,5 +1,6 @@
 import React from "react";
-import Card from "../../components/Base/card";
+// import Card from "../../components/Base/card";
+import CardAlter from "../../components/Base/CardAlter";
 import Navbar from "../../components/Module/navbar";
 import styles from "./editpekerja.module.css";
 import ava from "./img/ava.png";
@@ -21,12 +22,12 @@ const EditPekerja = () => {
               <div className="container">
                 <div className="row">
                   <div className="col-4">
-                    <Card img={ava} textPosition="text-start" titleImg="Edit" width="100%">
+                    <CardAlter img={ava} textPosition="text-start" titleImg="Edit" width="100%">
                       <p className="fs-5 fw-bold">Louis Tomlinson</p>
                       <span>Web Developer</span>
                       <p className="fw-light">Purwokerto, Jawa Tengah</p>
                       <span className="fw-light">Freelancer</span>
-                    </Card>
+                    </CardAlter>
                     <ButtonAlter className="mt-3 py-2" width="100%" backgroundColor="#5E50A1" color="white" border="none">
                       Simpan
                     </ButtonAlter>
@@ -35,7 +36,7 @@ const EditPekerja = () => {
                     </ButtonAlter>
                   </div>
                   <div className="col-8">
-                    <Card width="100%">
+                    <CardAlter width="100%">
                       <h4>Data Diri</h4>
                       <hr />
                       <Label className="mt-2" title="Nama Lengkap"></Label>
@@ -49,8 +50,8 @@ const EditPekerja = () => {
                       <Label className="mt-2" title="Deskripsi Singkat"></Label>
                       <textarea name="deskripsi" style={{ height: "100px" }} id="" className="form-control"></textarea>
                       {/* <Input css="input-form" placeholder="Tuliskan Deskripsi Singkat"></Input> */}
-                    </Card>
-                    <Card className="mt-5" width="100%">
+                    </CardAlter>
+                    <CardAlter className="mt-5" width="100%">
                       <h4>Skill</h4>
                       <hr />
                       <div className="row">
@@ -63,8 +64,8 @@ const EditPekerja = () => {
                           </ButtonAlter>
                         </div>
                       </div>
-                    </Card>
-                    <Card className="mt-2" width="100%">
+                    </CardAlter>
+                    <CardAlter className="mt-2" width="100%">
                       <h4>Pengalaman Kerja</h4>
                       <hr />
                       <Label className="mt-2" title="Posisi"></Label>
@@ -81,8 +82,8 @@ const EditPekerja = () => {
                       </div>
                       <textarea name="deskripsi" style={{ height: "100px" }} id="" className="form-control"></textarea>
                       <hr className={styles.hr2} />
-                    </Card>
-                    <Card className="mt-2" width="100%">
+                    </CardAlter>
+                    <CardAlter className="mt-2" width="100%">
                       <h4>Portofolio</h4>
                       <hr />
                       <Label className="mt-2" title="Nama Aplikasi"></Label>
@@ -115,7 +116,7 @@ const EditPekerja = () => {
                       <ButtonAlter className="p-2 w-100" backgroundColor="white" border="1px solid #FBB017">
                         Tambah Portofolio
                       </ButtonAlter>
-                    </Card>
+                    </CardAlter>
                   </div>
                 </div>
               </div>
