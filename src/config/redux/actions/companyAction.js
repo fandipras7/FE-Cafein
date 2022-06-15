@@ -1,36 +1,58 @@
 import axios from "axios";
 
-export const getCompanyById = (id) => async (dispatch) => {
+export const getCompanyById = (id, token) => async (dispatch) => {
     try {
-        const result = await axios.get(`${process.env.REACT_APP_URL_API}company/profile/${id}`)
+        // let config = {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //       }
+        // }
+        // console.log(config);
+        // console.log(token);
+        const result = await axios({
+            method: "GET",
+            baseURL: process.env.REACT_APP_URL_API,
+            url: `/company/profile`, 
+            data: id,
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
         // console.log(result.data);
-        const company = result.data.data
+        const company = result.data.result
+        // console.log(result.data);
         dispatch({ type: "GET_COMPANY_ID", payload: company })
-        console.log(company);
+        // console.log(company);
     } catch (error) {
         console.log(error);
     }
 }
 
-export const editCompany = (id, formData) => () => {
-    // dispatch({ type: "UPDATE_PRODUCT" });
-    axios.put(`${process.env.REACT_APP_URL_API}company/profile/${id}`, formData)
-        .then(res => {
-            console.log('post success', res);
-            // navigate("/");
-        })
-        .catch(err => {
-            console.log('err', err);
-        })
-};
+// export const editCompany = (id, formData) => () => {
+//     // dispatch({ type: "UPDATE_PRODUCT" });
+//     axios.put(`${process.env.REACT_APP_URL_API}company/profile/${id}`, formData)
+//         .then(res => {
+//             console.log('post success', res);
+//             // navigate("/");
+//         })
+//         .catch(err => {
+//             console.log('err', err);
+//         })
+// };
 
-// export const getProduct = () => async (dispatch) => {
-//     try {
-//         const result = await axios.get(`${process.env.REACT_APP_URL_API}products/`)
-//         const products = result.data.data
-//         dispatch({ type: "GET_PRODUCT", payload: products })
-//         console.log(products);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+export const editCompany = (formData) => async (dispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const result = await axios.put(`${process.env.REACT_APP_URL_API}company/profile`, formData, {
+        "content-type": "multipart/form-data",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const company = result.data.result;
+      dispatch({ type: "EDIT_COMPANY", payload:  company });
+    } catch (error) {
+      console.log(error);
+      alert("Edit failed");
+    }
+  };

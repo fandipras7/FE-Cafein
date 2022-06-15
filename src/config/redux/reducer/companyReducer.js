@@ -9,6 +9,11 @@ const companyReducer = (state = initialState, action) => {
                 ...state,
                 companyId: action.payload,
             };
+        case "EDIT_COMPANY":
+            return {
+                ...state,
+                companyId: action.payload,
+            };
         default:
             return state;
     }

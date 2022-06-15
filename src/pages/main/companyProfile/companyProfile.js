@@ -1,14 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Navbar from "../../../components/Module/navbar/index";
 import styles from "./companyProfile.module.css";
 import ava from "./img/fotoprofile.png";
 import Footer from "../../../components/Module/footer/index";
 import { Button } from "../../../components/index";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const CompanyProfile = () => {
   const [show, setShow] = useState(true);
+  const {companyId} = useSelector((state)=> state.company)
+  
+  console.log(companyId);
+
   return (
     <div>
       <Navbar />
@@ -46,7 +51,7 @@ const CompanyProfile = () => {
                       <tr>
                         <td>
                           <div className="mt-1">
-                            <i class="bi bi-envelope"></i>
+                            <i className="bi bi-envelope"></i>
                           </div>
                         </td>
                         <td>
@@ -56,7 +61,7 @@ const CompanyProfile = () => {
                       <tr>
                         <td>
                           <div className="mt-1">
-                            <i class="bi bi-instagram"></i>
+                            <i className="bi bi-instagram"></i>
                           </div>
                         </td>
                         <td>
@@ -66,7 +71,7 @@ const CompanyProfile = () => {
                       <tr>
                         <td>
                           <div className="mt-1">
-                            <i class="bi bi-telephone"></i>
+                            <i className="bi bi-telephone"></i>
                           </div>
                         </td>
                         <td>
@@ -76,7 +81,7 @@ const CompanyProfile = () => {
                       <tr>
                         <td>
                           <div className="mt-1">
-                            <i class="bi bi-linkedin"></i>
+                            <i className="bi bi-linkedin"></i>
                           </div>
                         </td>
                         <td>

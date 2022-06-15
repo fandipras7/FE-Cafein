@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editCompany } from "../../../config/redux/actions/companyAction";
+import { editCompany, getCompanyById } from "../../../config/redux/actions/companyAction";
+import CardAlter from "../../../components/Base/CardAlter";
 import Card from "../../../components/Base/CardAlter";
 import Navbar from "../../../components/Module/navbar";
 import styles from "./editCompany.module.css";
@@ -13,6 +14,38 @@ import Footer from "../../../components/Module/footer";
 const EditCompany = () => {
   const dispatch = useDispatch();
   const { companyId } = useSelector((state) => state.company);
+  const [dataCompany, setDataCompany] = useState({
+    companyname: "",
+    jobfield: "",
+    companyaddress: "",
+    description: "",
+    
+  });
+
+  const handleData = (e) => {
+    e.preventDefault();
+    dispatch(editCompany(dataCompany));
+  };
+
+  const handleChange = (e) => {
+    setDataCompany({
+      ...dataCompany,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const uploadImage = (e) => {
+    const file = e.target.files[0];
+    // setPhoto(file);
+    setDataCompany({
+      ...dataCompany,
+      profileimage: URL.createObjectURL(file),
+    });
+  };
+
+  useEffect(() => {
+    dispatch(getCompanyById(dataCompany, setDataCompany));
+  }, []);
 
   return (
     <div>
@@ -25,12 +58,28 @@ const EditCompany = () => {
               <div className="container">
                 <div className="row">
                   <div className="col-4 mt-5">
-                    <Card img={ava} textPosition="text-start" titleImg="Edit" width="100%">
-                      <p className="fs-5 fw-bold">Louis Tomlinson</p>
-                      <span>Web Developer</span>
+                  <CardAlter
+                      img={dataCompany.profileimage}
+                      onChange={(e) => {
+                        uploadImage(e);
+                      }}
+                      textPosition="text-start"
+                      titleImg="Edit"
+                      width="100%"
+                    >
+                      <input
+                        type="file"
+                        className="form-control btn text-center"
+                        accept="image/"
+                        onChange={(e) => {
+                          uploadImage(e);
+                        }}
+                      />
+                      <p className="fs-5 fw-bold">PT. Jaya Abadi</p>
+                      <span>Financial</span>
                       <p className="fw-light">Purwokerto, Jawa Tengah</p>
                       <span className="fw-light">Freelancer</span>
-                    </Card>
+                    </CardAlter>
                     <ButtonAlter className="mt-3 py-2" width="100%" backgroundColor="#5E50A1" color="white" border="none">
                       Simpan
                     </ButtonAlter>

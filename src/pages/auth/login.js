@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import "./auth.css";
 import style from "./login.module.css";
 import { Input, Button } from "../../components/index";
+import { getCompanyById } from "../../config/redux/actions/companyAction"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -32,6 +33,9 @@ const Login = () => {
         localStorage.setItem("Role", res.data.data.role);
         console.log(res.data);
         if (res.data.data.role === "Recruiter") {
+          const formData = new FormData();
+          formData.append("id", res.data.data.id);
+          dispatch(getCompanyById(formData, res.data.data.token))
           Swal.fire({
             position: "center",
             icon: "success",
