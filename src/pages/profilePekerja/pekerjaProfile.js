@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Module/navbar/index";
 import header from "./img/headerImage.png";
 import styles from "./profile.module.css";
@@ -13,9 +13,21 @@ import p3 from "./img/p3.png";
 import p4 from "./img/p4.png";
 import tokped from "./img/tokped.png";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getDataById } from "../../config/redux/actions/pekerjaAction";
 
 const pekerjaProfile = () => {
   const [show, setShow] = useState(true);
+  const dispatch = useDispatch();
+  const { detailProfile } = useSelector((state) => state.pekerja);
+  // const { id } = useParams();
+
+  // console.log(detailProfile.profile);
+  useEffect(() => {
+    dispatch(getDataById());
+  }, []);
+
   return (
     <div>
       <Navbar isLogin={true}></Navbar>

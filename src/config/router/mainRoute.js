@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/registerUser" element={<RegisterUser />} />
         <Route exact path="/registerCompany" element={<RegisterCompany />} />
         <Route exact path="/landing" element={<Landingpage />} />
-        <Route exact path="/profilePekerja" element={<ProfilePekerja />} />
+        <Route exact path="/pekerja" element={<ProfilePekerja />} />
         <Route exact path="/editPekerja" element={<EditPekerja />} />
         <Route exact path="/companyProfile" element={<CompanyProfile />} />
         <Route exact path="/editCompany" element={<EditCompany />} />
