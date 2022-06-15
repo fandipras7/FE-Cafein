@@ -11,21 +11,70 @@ import RegisterUser from "../../pages/auth/registerUser";
 import RegisterCompany from "../../pages/auth/registerCompany";
 import CompanyProfile from "../../pages/main/companyProfile/companyProfile";
 import EditCompany from "../../pages/main/editCompanyProfile/editCompany";
+import PrivateRoot from "../../components/Base/privateroot";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/home" element={<Home />} />
+        <Route
+          exact
+          path="/home"
+          element={
+            <PrivateRoot>
+              <Home />
+            </PrivateRoot>
+          }
+        />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/registerUser" element={<RegisterUser />} />
         <Route exact path="/registerCompany" element={<RegisterCompany />} />
         <Route exact path="/landing" element={<Landingpage />} />
-        <Route exact path="/pekerja" element={<ProfilePekerja />} />
-        <Route exact path="/editPekerja" element={<EditPekerja />} />
-        <Route exact path="/companyProfile" element={<CompanyProfile />} />
-        <Route exact path="/editCompany" element={<EditCompany />} />
-        <Route exact path="/hire" element={<Hire />} />
+        <Route
+          exact
+          path="/profilePekerja"
+          element={
+            <PrivateRoot>
+              <ProfilePekerja />
+            </PrivateRoot>
+          }
+        />
+        <Route
+          exact
+          path="/editPekerja"
+          element={
+            <PrivateRoot>
+              <EditPekerja />
+            </PrivateRoot>
+          }
+        />
+        <Route
+          exact
+          path="/companyProfile"
+          element={
+            <PrivateRoot>
+              <CompanyProfile />
+            </PrivateRoot>
+          }
+        />
+        <Route
+          exact
+          path="/editCompany"
+          element={
+            <PrivateRoot>
+              <EditCompany />
+            </PrivateRoot>
+          }
+        />
+        <Route
+          exact
+          path="/hire"
+          element={
+            <PrivateRoot>
+              <Hire />
+            </PrivateRoot>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

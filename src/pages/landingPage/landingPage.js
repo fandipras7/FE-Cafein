@@ -15,11 +15,12 @@ import wadah from "./img/wadah.png";
 import ombak from "./img/ombak.png";
 import Footer from "../../components/Module/footer";
 import logo from "./img/logo.png";
+import { Link } from "react-router-dom";
 
 const landingPage = () => {
   return (
     <div>
-      <Navbar isLogin={false} clasName="navbar navbar-light bg-light"></Navbar>
+      <Navbar clasName="navbar navbar-light bg-light"></Navbar>
       <main>
         <div className="container mt-5">
           <div className="row row-cols-xxxl-6">
@@ -28,7 +29,10 @@ const landingPage = () => {
                 <h4 className="text-start">Talenta terbaik negri untuk perubahan revolusi 4.0</h4>
               </div>
               <p className="text-ligth me-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</p>
-              <Button btn="btnMulai" title="Mulai dari Sekarang"></Button>
+
+              <Link to="/login">
+                <Button btn="btnMulai" title="Mulai dari Sekarang"></Button>
+              </Link>
             </div>
             <div className="col mt-5">
               <div className={styles.picture + " position-relative"}>
@@ -189,7 +193,9 @@ const landingPage = () => {
           <div className={"row mt-5"}>
             <div className="col text-center">
               <div className={styles.kotakTron}>
-                <Button btn="btnMulai2" title="Mulai dari sekarang"></Button>
+                <Link to="/login">
+                  <Button btn="btnMulai2" title="Mulai dari sekarang"></Button>
+                </Link>
               </div>
             </div>
           </div>

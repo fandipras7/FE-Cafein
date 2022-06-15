@@ -12,7 +12,7 @@ import Input from "../../components/Base/Input";
 const Hire = () => {
   return (
     <div>
-      <Navbar isLogin={true}></Navbar>
+      <Navbar />
       <main>
         <div className="container-fluid bg-light">
           <div className="container">

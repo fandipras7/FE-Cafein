@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import {editCompany} from '../../../config/redux/actions/companyAction'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { editCompany } from "../../../config/redux/actions/companyAction";
 import Card from "../../../components/Base/CardAlter";
 import Navbar from "../../../components/Module/navbar";
 import styles from "./editCompany.module.css";
@@ -11,13 +11,12 @@ import Input from "../../../components/Base/Input";
 import Footer from "../../../components/Module/footer";
 
 const EditCompany = () => {
-  const dispatch = useDispatch()
-  const { companyId } = useSelector((state) => state.company)
-
+  const dispatch = useDispatch();
+  const { companyId } = useSelector((state) => state.company);
 
   return (
     <div>
-      <Navbar isLogin={true}></Navbar>
+      <Navbar />
       <main>
         <div className="container-fluid bg-light positon-relative">
           <div className={"col-12 position-absolute " + styles.background}></div>

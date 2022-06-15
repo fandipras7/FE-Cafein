@@ -121,6 +121,7 @@ const EditPekerja = () => {
   return (
     <div>
       <Navbar isLogin={true}></Navbar>
+
       <main>
         <div className="container-fluid bg-light positon-relative">
           <div className={"col-12 position-absolute " + styles.background}></div>
@@ -181,6 +182,7 @@ const EditPekerja = () => {
                       <Input name="workplace" css="input-form" value={dataProfile.workplace} onChange={handleChange} placeholder="Masukan Tempat Kerja"></Input>
                       <Label className="mt-2" title="Deskripsi Singkat"></Label>
                       <textarea name="description" value={dataProfile.description} onChange={handleChange} style={{ height: "100px" }} id="" className="form-control"></textarea>
+
                       {/* <Input css="input-form" placeholder="Tuliskan Deskripsi Singkat"></Input> */}
                     </CardAlter>
                     <CardAlter className="mt-5" width="100%">
