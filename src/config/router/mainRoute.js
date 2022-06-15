@@ -9,6 +9,8 @@ import Home from "../../pages/main/home/home";
 import Login from "../../pages/auth/login";
 import RegisterUser from "../../pages/auth/registerUser";
 import RegisterCompany from "../../pages/auth/registerCompany";
+import CompanyProfile from "../../pages/main/companyProfile/companyProfile";
+import EditCompany from "../../pages/main/editCompanyProfile/editCompany";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route exact path="/landing" element={<Landingpage />} />
         <Route exact path="/profilePekerja" element={<ProfilePekerja />} />
         <Route exact path="/editPekerja" element={<EditPekerja />} />
+        <Route exact path="/companyProfile" element={<CompanyProfile />} />
+        <Route exact path="/editCompany" element={<EditCompany />} />
         <Route exact path="/hire" element={<Hire />} />
       </Routes>
     </BrowserRouter>

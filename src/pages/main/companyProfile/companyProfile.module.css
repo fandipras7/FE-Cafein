@@ -1,0 +1,48 @@
+.position {
+    left: 50%;
+    margin-left: 50px;
+}
+
+
+.bg_image {
+    height: 200px;
+    background-color: #5e50a1;
+}
+
+.btnInput {
+    position: absolute;
+    top: 150px;
+    right: 100px;
+    background-color: #5e50a1;
+    border: none;
+    color: white;
+
+}
+
+.ava {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    /* right: 50%; */
+    transform: translateX(-50%);
+
+
+}
+
+.dt_profile {
+    margin-top: 150px;
+    text-align: center;
+    align-items: center;
+
+
+}
+
+.portfolioName {
+    margin-left: 50px;
+}
+
+.contact{
+    display: flex;
+    justify-content: center;
+    padding-left: 7%;
+}
