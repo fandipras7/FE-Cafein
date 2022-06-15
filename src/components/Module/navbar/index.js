@@ -6,8 +6,11 @@ import styles from "./navbar.module.css";
 import ava from "./img/ava.png";
 import bell from "./img/bell.png";
 import mail from "./img/mail.png";
+import { useSelector } from "react-redux";
 
 const Navbar = ({ className, ...props }) => {
+  const { user } = useSelector((state) => state.user);
+  console.log(user);
   // const isLogin = props.isLogin;
   // const isLogin = props.isLogin;
   const [isLogin, setLogin] = useState(false);
@@ -51,7 +54,7 @@ const Navbar = ({ className, ...props }) => {
                     <Button btn="btnAva" title={<img src={ava} alt="" />}></Button>
                     {/* </button> */}
                     <div className={styles.dropdown_content}>
-                      <Link to="/profilePekerja">profile </Link>
+                      <Link to={`/profilePekerja/${user.id}`}>profile </Link>
                       <Link to="#" onClick={handleLogout}>
                         LogOut
                       </Link>

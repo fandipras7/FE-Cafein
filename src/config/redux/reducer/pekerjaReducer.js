@@ -2,6 +2,7 @@ const initialState = {
   pekerja: [],
   isGeting: false,
   detailProfile: {},
+  profile: {},
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         pekerja: action.payload,
+      };
+    case "GET_PROFILE_BY_ID":
+      return {
+        ...state,
+        profile: action.payload.profile,
       };
     case "GET_DETAIL_SUCCESS":
       // console.log(action.payload.profile.fullname);
@@ -37,6 +43,10 @@ const profileReducer = (state = initialState, action) => {
         ...state,
       };
     case "NEW_PORTOFOLIO":
+      return {
+        ...state,
+      };
+    case "UPLOAD_AVA":
       return {
         ...state,
       };

@@ -32,7 +32,7 @@ function App() {
         <Route exact path="/landing" element={<Landingpage />} />
         <Route
           exact
-          path="/profilePekerja"
+          path="/profilePekerja/:id"
           element={
             <PrivateRoot>
               <ProfilePekerja />
@@ -41,7 +41,7 @@ function App() {
         />
         <Route
           exact
-          path="/editPekerja"
+          path="/editPekerja/:id"
           element={
             <PrivateRoot>
               <EditPekerja />

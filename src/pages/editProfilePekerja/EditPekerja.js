@@ -9,10 +9,13 @@ import Label from "../../components/Base/Label";
 import Input from "../../components/Base/Input";
 import Footer from "../../components/Module/footer";
 import portoImg from "./img/backimg.PNG";
-import { addnewSkill, addPortofolio, addWorkExperience, editDataDiri, getDataById } from "../../config/redux/actions/pekerjaAction";
+import { addnewSkill, addPortofolio, addWorkExperience, editDataDiri, getDataById, uploadAva } from "../../config/redux/actions/pekerjaAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditPekerja = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { detailProfile } = useSelector((state) => state.pekerja);
   // const [profile2, setProfile2] = useState({});
@@ -24,21 +27,25 @@ const EditPekerja = () => {
     jobdesk: "",
     address: "",
     workplace: "",
-    profileImage: "",
+    profileimage: "",
     description: "",
   });
 
+  // ava profile
+  const [avatar, setAvatar] = useState(detailProfile.profileImage);
+
   const handleDataDiri = (e) => {
-    // const data = new FormData();
+    const data = new FormData();
     // data.append("fullname", dataProfile.name);
     // data.append("jobdesk", dataProfile.jobdesk);
     // data.append("address", dataProfile.address);
     // data.append("workplace", dataProfile.workplace);
-    // // data.append("profileImage", dataProfile.profileImage);
     // data.append("description", dataProfile.description);
+    data.append("profileimage", dataProfile.profileimage);
     e.preventDefault();
     // console.log(data);
     dispatch(editDataDiri(dataProfile));
+    dispatch(uploadAva(data));
   };
 
   // Skill
@@ -77,6 +84,15 @@ const EditPekerja = () => {
     });
   };
 
+  const uploadImage = (e) => {
+    const file = e.target.files[0];
+    setAvatar(URL.createObjectURL(file));
+    setDataProfile({
+      ...dataProfile,
+      profileimage: file,
+    });
+  };
+
   const addPorto = (e) => {
     const data = new FormData();
     data.append("aplicationname", porto.aplicationname);
@@ -102,19 +118,10 @@ const EditPekerja = () => {
     });
   };
 
-  const uploadImage = (e) => {
-    const file = e.target.files[0];
-    // setPhoto(file);
-    setDataProfile({
-      ...dataProfile,
-      profileImage: URL.createObjectURL(file),
-    });
-  };
-
-  console.log(porto);
+  console.log(dataProfile.profileimage);
 
   useEffect(() => {
-    dispatch(getDataById(dataProfile, setDataProfile));
+    dispatch(getDataById(dataProfile, setDataProfile, id));
   }, []);
 
   // console.log(profile2);
@@ -131,7 +138,7 @@ const EditPekerja = () => {
                 <div className="row">
                   <div className="col-4">
                     <CardAlter
-                      img={dataProfile.profileImage}
+                      img={avatar}
                       onChange={(e) => {
                         uploadImage(e);
                       }}
@@ -155,6 +162,7 @@ const EditPekerja = () => {
                     <ButtonAlter
                       onClick={(e) => {
                         handleDataDiri(e);
+                        navigate(`/profilePekerja/${detailProfile.iduser}`);
                       }}
                       className="mt-3 py-2"
                       width="100%"
