@@ -46,7 +46,9 @@ const pekerjaProfile = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
                       </div>
                     </div>
-                    <Button btn="btnHire" title="Hire"></Button>
+                    <Link to="/hire">
+                      <Button btn="btnHire" title="Hire"></Button>
+                    </Link>
                   </div>
                   <div className="col-3 mt-5">
                     <h5>Skill</h5>
