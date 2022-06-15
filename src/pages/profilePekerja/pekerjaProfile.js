@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataById } from "../../config/redux/actions/pekerjaAction";
+import { Link } from "react-router-dom";
 
 const pekerjaProfile = () => {
   const [show, setShow] = useState(true);
@@ -30,13 +31,16 @@ const pekerjaProfile = () => {
 
   return (
     <div>
-      <Navbar isLogin={true}></Navbar>
+      <Navbar />
+
       <main>
         <div className="container-fluid bg-light">
           <div className="container position-relative mt-5">
             <div className="row position-relative">
               <div className={"col " + styles.bg_image}>
-                <button className={styles.btnInput}>edit profile</button>
+                <Link to="/editPekerja">
+                  <button className={styles.btnInput}>edit profile</button>
+                </Link>
               </div>
             </div>
             <div className="row">
@@ -55,7 +59,9 @@ const pekerjaProfile = () => {
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
                       </div>
                     </div>
-                    <Button btn="btnHire" title="Hire"></Button>
+                    <Link to="/hire">
+                      <Button btn="btnHire" title="Hire"></Button>
+                    </Link>
                   </div>
                   <div className="col-3 mt-5">
                     <h5>Skill</h5>
