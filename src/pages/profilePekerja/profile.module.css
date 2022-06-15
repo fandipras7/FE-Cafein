@@ -1,0 +1,26 @@
+.bg_image {
+  height: 200px;
+  background-color: #5e50a1;
+}
+
+.btnInput {
+  position: absolute;
+  top: 150px;
+  right: 100px;
+  background-color: #5e50a1;
+  border: none;
+  color: white;
+}
+
+.ava {
+  position: absolute;
+  top: -70px;
+}
+
+.dt_profile {
+  margin-top: 150px;
+}
+
+.portfolioName {
+  margin-left: 50px;
+}

@@ -1,0 +1,55 @@
+.text {
+  width: 40%;
+  /* background-color: white; */
+}
+.text {
+  width: 65%;
+  /* background-color: white; */
+}
+
+.picture {
+  /* width: 800px; */
+  width: 80%;
+  background-color: white;
+}
+
+.pict_2 {
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+.pict_3 {
+  margin-top: 0px;
+}
+
+.tableCustom {
+  width: 50%;
+}
+
+.kotak3 {
+  margin-right: -410px;
+  margin-top: -30px;
+}
+
+.kotak4 {
+  margin-right: -350px;
+  margin-top: -80px;
+}
+
+.kotakTron {
+  position: relative;
+  margin-top: 200px !important;
+  background: #5e50a1;
+  border-radius: 40px 8px;
+  width: 1140px;
+  height: 227px;
+}
+
+hr {
+  background-color: white;
+  margin-top: 50px;
+}
+
+/* ul li {
+  display: inline !important;
+} */
