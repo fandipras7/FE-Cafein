@@ -27,6 +27,19 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         detailProfile: action.payload.profile,
       };
+    case "ADD_NEW_SKILL":
+      return {
+        ...state,
+        // detailProfile: action.payload.profile,
+      };
+    case "ADD_WORk_EXP":
+      return {
+        ...state,
+      };
+    case "NEW_PORTOFOLIO":
+      return {
+        ...state,
+      };
     default:
       return state;
   }

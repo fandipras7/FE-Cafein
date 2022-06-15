@@ -66,24 +66,59 @@ export const editDataDiri = (dataform) => async (dispatch) => {
 export const addnewSkill = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-
-    const result = await axios(
-      {
-        method: "POST",
-        baseURL: process.env.REACT_APP_URL_API,
-        url: `/users/skill`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+    console.log(data);
+    const result = await axios.post(`${process.env.REACT_APP_URL_API}users/skill`, data, {
+      "content-type": "multipart/form-data",
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-      data
-      // { "content-type": "multipart/form-data" }
-    );
-    const profile = result.data.data;
-    dispatch({ type: "ADD_NEWSKILL", payload: { profile } });
+    });
+    // const profile = result.data.data;
+    dispatch({ type: "ADD_NEW_SKILL" /*payload: { profile } */ });
     // navigate("/storeprofile/myproduct");
+    console.log(data);
   } catch (error) {
     console.log(error);
-    alert("gagal ADD_NEWSKILL");
+    alert("gagal ADD_NEW_SKILL");
+  }
+};
+
+export const addWorkExperience = (data) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log(data);
+    const result = await axios.post(`${process.env.REACT_APP_URL_API}users/workexp`, data, {
+      "content-type": "multipart/form-data",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // const profile = result.data.data;
+    dispatch({ type: "ADD_WORK_EXP" /*payload: { profile } */ });
+    // navigate("/storeprofile/myproduct");
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+    alert("gagal ADD_NEW_SKILL");
+  }
+};
+
+export const addPortofolio = (data) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log(data);
+    const result = await axios.post(`${process.env.REACT_APP_URL_API}users/portofolio`, data, {
+      "content-type": "multipart/form-data",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // const profile = result.data.data;
+    dispatch({ type: "NEW_PORTO" /*payload: { profile } */ });
+    // navigate("/storeprofile/myproduct");
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+    alert("gagal ADD_PORTO");
   }
 };
