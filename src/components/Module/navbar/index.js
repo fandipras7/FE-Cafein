@@ -11,6 +11,7 @@ const Navbar = ({ className, ...props }) => {
   // const isLogin = props.isLogin;
   // const isLogin = props.isLogin;
   const [isLogin, setLogin] = useState(false);
+  const [isRole, setRole] = useState(null)
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -20,9 +21,15 @@ const Navbar = ({ className, ...props }) => {
   };
   useEffect(() => {
     const localData = localStorage.getItem("token");
-    console.log(localData);
     if (localData) {
       setLogin(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const roleuser = localStorage.getItem("Role");
+    if (roleuser) {
+      setRole(roleuser);
     }
   }, []);
 
@@ -51,10 +58,10 @@ const Navbar = ({ className, ...props }) => {
                     <Button btn="btnAva" title={<img src={ava} alt="" />}></Button>
                     {/* </button> */}
                     <div className={styles.dropdown_content}>
-                      <Link to="/profilePekerja">profile </Link>
-                      <Link to="#" onClick={handleLogout}>
-                        LogOut
-                      </Link>
+                    <Link to={isRole === 'Recruiter' ? "/companyprofile"   : "/profilepekerja" }>Profile </Link> 
+                      <p  onClick={handleLogout}>
+                        Logout
+                      </p>
                     </div>
                   </div>
                 </li>

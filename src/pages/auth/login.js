@@ -29,6 +29,7 @@ const Login = () => {
       .then((res) => {
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("refreshToken", res.data.data.refreshToken);
+        localStorage.setItem("Role", res.data.data.role);
         console.log(res.data);
         if (res.data.data.role === "Recruiter") {
           Swal.fire({

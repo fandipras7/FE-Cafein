@@ -15,15 +15,16 @@ ul li {
 }
 
 /* Links inside the dropdown */
-.dropdown_content a {
+.dropdown_content a, .dropdown_content p {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  cursor: pointer;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown_content a:hover {
+.dropdown_content a:hover, .dropdown_content p:hover {
   background-color: #ddd;
 }
 
@@ -37,3 +38,4 @@ ul li {
   background-color: white;
   color: black;
 }
+
