@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from "../../../components/Module/navbar/index";
 import styles from "./companyProfile.module.css";
 import ava from "./img/fotoprofile.png";
@@ -6,13 +6,22 @@ import Footer from "../../../components/Module/footer/index";
 import { Button } from "../../../components/index";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import {getCompanyById} from '../../../config/redux/actions/companyAction'
 
 
 const CompanyProfile = () => {
   const [show, setShow] = useState(true);
-  const {companyId} = useSelector((state)=> state.company)
-  
+  const { companyId } = useSelector((state) => state.company)
+  const dispatch = useDispatch();
   console.log(companyId);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("id", companyId.idcompany);
+    dispatch(getCompanyById(formData, token))
+  }, [])
+  
 
   return (
     <div>
@@ -32,12 +41,12 @@ const CompanyProfile = () => {
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">
-                    <h5>Louis Tomlinsoon</h5>
-                    <p>Web Developer</p>
-                    <p>Purwokerto, Jawa Tengah</p>
+                    <h5>{companyId.companyname}</h5>
+                    <p>{companyId.jobfield}</p>
+                    <p>{companyId.companyaddress}</p>
                     <div className="row d-flex justify-content-center">
                       <div className="col-6">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
+                        <p>{companyId.description}</p>
                       </div>
                     </div>
                     <Link to="/editCompany">
@@ -55,7 +64,7 @@ const CompanyProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">Louistommo@gmail.com</p>
+                          <p className="mt-1">{companyId.emailcompany}</p>
                         </td>
                       </tr>
                       <tr>
@@ -65,7 +74,7 @@ const CompanyProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">@Louist91</p>
+                          <p className="mt-1">{companyId.instagram}</p>
                         </td>
                       </tr>
                       <tr>
@@ -75,7 +84,7 @@ const CompanyProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">@Louistommo</p>
+                        <p className="mt-1">{companyId.companyphone}</p>
                         </td>
                       </tr>
                       <tr>
@@ -85,7 +94,7 @@ const CompanyProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">@Louistommo</p>
+                          <p className="mt-1">{companyId.linkedin}</p>
                         </td>
                       </tr>
                     </div>

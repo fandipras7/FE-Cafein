@@ -13,39 +13,59 @@ import Footer from "../../../components/Module/footer";
 
 const EditCompany = () => {
   const dispatch = useDispatch();
-  const { companyId } = useSelector((state) => state.company);
+  const { companyId } = useSelector((state) => state.company)
+//   console.log(companyId);
+//  console.log(companyId.companyname);
   const [dataCompany, setDataCompany] = useState({
     companyname: "",
     jobfield: "",
     companyaddress: "",
     description: "",
+    emailcompany: "", 
+    instagram: "",
+    companyphone: "",
+    linkedin: "",
     
   });
 
   const handleData = (e) => {
+    console.log(dataCompany);
     e.preventDefault();
-    dispatch(editCompany(dataCompany));
+    const formData = new FormData();
+    formData.append("companyname", dataCompany.companyname);
+    formData.append("jobfield", dataCompany.jobfield);
+    formData.append("companyaddress", dataCompany.companyaddress);
+    formData.append("description", dataCompany.description);
+    formData.append("emailcompany", dataCompany.emailcompany);
+    formData.append("instagram", dataCompany.instagram);
+    formData.append("companyphone", dataCompany.companyphone);
+    formData.append("linkedin", dataCompany.linkedin);
+    dispatch(editCompany(formData));
+    
   };
 
   const handleChange = (e) => {
-    setDataCompany({
-      ...dataCompany,
-      [e.target.name]: e.target.value,
-    });
+    const newdata = {...dataCompany}
+    newdata[e.target.name] = e.target.value
+    setDataCompany(newdata);
   };
+  // console.log(dataCompany);
 
-  const uploadImage = (e) => {
-    const file = e.target.files[0];
-    // setPhoto(file);
-    setDataCompany({
-      ...dataCompany,
-      profileimage: URL.createObjectURL(file),
-    });
-  };
+  // const uploadImage = (e) => {
+  //   const file = e.target.files[0];
+  //   // setPhoto(file);
+  //   setDataCompany({
+  //     ...dataCompany,
+  //     profileimage: URL.createObjectURL(file),
+  //   });
+  // };
 
   useEffect(() => {
-    dispatch(getCompanyById(dataCompany, setDataCompany));
-  }, []);
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("id", companyId.idcompany);
+    dispatch(getCompanyById(formData, token))
+  }, [])
 
   return (
     <div>
@@ -59,10 +79,10 @@ const EditCompany = () => {
                 <div className="row">
                   <div className="col-4 mt-5">
                   <CardAlter
-                      img={dataCompany.profileimage}
-                      onChange={(e) => {
-                        uploadImage(e);
-                      }}
+                      // img={''}
+                      // onChange={(e) => {
+                      //   uploadImage(e);
+                      // }}
                       textPosition="text-start"
                       titleImg="Edit"
                       width="100%"
@@ -71,16 +91,15 @@ const EditCompany = () => {
                         type="file"
                         className="form-control btn text-center"
                         accept="image/"
-                        onChange={(e) => {
-                          uploadImage(e);
-                        }}
+                        // onChange={(e) => {
+                        //   uploadImage(e);
+                        // }}
                       />
-                      <p className="fs-5 fw-bold">PT. Jaya Abadi</p>
-                      <span>Financial</span>
-                      <p className="fw-light">Purwokerto, Jawa Tengah</p>
-                      <span className="fw-light">Freelancer</span>
+                      <p className="fs-5 fw-bold">{companyId.companyname}</p>
+                      <span>{companyId.jobfield}</span>
+                      <p className="fw-light">{companyId.companyaddress}</p>
                     </CardAlter>
-                    <ButtonAlter className="mt-3 py-2" width="100%" backgroundColor="#5E50A1" color="white" border="none">
+                    <ButtonAlter className="mt-3 py-2" width="100%" backgroundColor="#5E50A1" color="white" border="none" onClick={(e)=>handleData(e)} >
                       Simpan
                     </ButtonAlter>
                     <ButtonAlter className="mt-3 py-2" width="100%" backgroundColor="white" color="#5E50A1" border="1px solid gray">
@@ -92,21 +111,21 @@ const EditCompany = () => {
                       <h4>Data Diri</h4>
                       <hr />
                       <Label className="mt-2" title="Nama Perusahaan"></Label>
-                      <Input css="input-form" placeholder="Masukan nama perusahaan"></Input>
+                      <Input css="input-form" placeholder="Masukan nama perusahaan" name='companyname' onChange={(e)=>handleChange(e)} value={dataCompany.companyname} defaultValue={companyId.companyname}></Input>
                       <Label className="mt-2" title="Bidang"></Label>
-                      <Input css="input-form" placeholder="Masukan bidang perusahaan ex: Financial "></Input>
+                      <Input css="input-form" placeholder="Masukan bidang perusahaan ex: Financial" name='jobfield' onChange={(e)=>handleChange(e)} value={dataCompany.jobfield} defaultValue={companyId.jobfield}/>
                       <Label className="mt-2" title="Kota"></Label>
-                      <Input css="input-form" placeholder="Masukan kota"></Input>
+                      <Input css="input-form" placeholder="Masukan kota" name='companyaddress' onChange={(e)=>handleChange(e)} value={dataCompany.companyaddress} defaultValue={companyId.companyaddress} ></Input>
                       <Label className="mt-2" title="Deskripsi Singkat"></Label>
-                      <textarea name="deskripsi" style={{ height: "100px", marginBottom: "20px" }} id="" className="form-control"></textarea>
-                      <Label className="mt-2" title="Email"></Label>
-                      <Input css="input-form" placeholder="Masukan email"></Input>
+                      <textarea style={{ height: "100px", marginBottom: "20px" }} id="" className="form-control" name='description' onChange={(e)=>handleChange(e)} value={dataCompany.description} defaultValue={companyId.description}></textarea>
+                      <Label className="mt-2" title="Email" ></Label>
+                      <Input css="input-form" placeholder="Masukan email" name='emailcompany' onChange={(e)=>handleChange(e)} value={dataCompany.emailcompany} defaultValue={companyId.emailcompany}></Input>
                       <Label className="mt-2" title="Instagram"></Label>
-                      <Input css="input-form" placeholder="Masukan nama instagram"></Input>
+                      <Input css="input-form" placeholder="Masukan nama instagram" name='instagram' onChange={(e)=>handleChange(e)} value={dataCompany.instagram} defaultValue={companyId.instagram} ></Input>
                       <Label className="mt-2" title="Nomor Telepon"></Label>
-                      <Input css="input-form" placeholder="Masukan nomor telepon"></Input>
+                      <Input css="input-form" placeholder="Masukan nomor telepon" name='companyphone' onChange={(e)=>handleChange(e)} value={dataCompany.companyphone} defaultValue={companyId.companyphone} ></Input>
                       <Label className="mt-2" title="Linkedin"></Label>
-                      <Input css="input-form" placeholder="Masukan nama Linkedin"></Input>
+                      <Input css="input-form" placeholder="Masukan nama Linkedin" name='linkedin' onChange={(e)=>handleChange(e)} value={dataCompany.linkedin} defaultValue={companyId.linkedin} ></Input>
                     </Card>
                   </div>
                 </div>

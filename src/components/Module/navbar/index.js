@@ -16,7 +16,7 @@ const Navbar = ({ className, ...props }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
-    navigate("/landing");
+    navigate("/login");
     setLogin(false);
   };
   useEffect(() => {

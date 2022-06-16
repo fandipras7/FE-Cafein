@@ -1,5 +1,23 @@
 const initialState = {
-    companyId: [],
+    companyedit:[],
+    companyId: {
+        "idcompany": "",
+        "email": "",
+        "name": "",
+        "jobposition": "",
+        "companyname": "",
+        "companyaddress": "",
+        "jobfield": "",
+        "description": "",
+        "phonenumber": "",
+        "emailcompany": "",
+        "role": "",
+        "status": "",
+        "instagram": "",
+        "companyphone": "",
+        "linkedin": "",
+        "profileimage": null
+    },
 }
 
 const companyReducer = (state = initialState, action) => {
@@ -12,7 +30,7 @@ const companyReducer = (state = initialState, action) => {
         case "EDIT_COMPANY":
             return {
                 ...state,
-                companyId: action.payload,
+                companyedit: action.payload,
             };
         default:
             return state;

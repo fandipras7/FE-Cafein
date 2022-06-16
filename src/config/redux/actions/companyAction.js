@@ -49,7 +49,7 @@ export const editCompany = (formData) => async (dispatch) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const company = result.data.result;
+      const company = result.data;
       dispatch({ type: "EDIT_COMPANY", payload:  company });
     } catch (error) {
       console.log(error);
