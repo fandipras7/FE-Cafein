@@ -14,7 +14,7 @@ Hire job is an app for IT people to find their dream job
 ## 💻 How To Install?
 - Clone This Repo
 ```
-git clone 
+git clone https://github.com/NisrinaNataraharja/FE-Cafein.git
 ```
 - Go To Folder Repo
 - 
