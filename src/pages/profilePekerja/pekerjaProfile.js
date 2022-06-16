@@ -13,20 +13,21 @@ import p3 from "./img/p3.png";
 import p4 from "./img/p4.png";
 import tokped from "./img/tokped.png";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDataById } from "../../config/redux/actions/pekerjaAction";
+import { getDataById, getProfileByID } from "../../config/redux/actions/pekerjaAction";
 import { Link } from "react-router-dom";
 
 const pekerjaProfile = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
-  const { detailProfile } = useSelector((state) => state.pekerja);
-  // const { id } = useParams();
+  const { profile } = useSelector((state) => state.pekerja);
+  const { id } = useParams();
 
-  // console.log(detailProfile.profile);
+  console.log(profile);
   useEffect(() => {
-    dispatch(getDataById());
+    dispatch(getProfileByID(id));
   }, []);
 
   return (
@@ -38,25 +39,30 @@ const pekerjaProfile = () => {
           <div className="container position-relative mt-5">
             <div className="row position-relative">
               <div className={"col " + styles.bg_image}>
-                <Link to="/editPekerja">
-                  <button className={styles.btnInput}>edit profile</button>
-                </Link>
+                <button
+                  onClick={() => {
+                    navigate(`/editpekerja/${id}`);
+                  }}
+                  className={styles.btnInput}
+                >
+                  edit profile
+                </button>
               </div>
             </div>
             <div className="row">
               <div className="col position-relative px-5 bg-white">
-                <div className={styles.ava}>
+                <div className="">
                   <img src={ava} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">
-                    <h5>Louis Tomlinsoon</h5>
-                    <p>Web Developer</p>
-                    <p>Purwokerto, Jawa Tengah</p>
+                    <h5>{profile.fullname}</h5>
+                    <p>{profile.jobdesk}</p>
+                    <p>{profile.domisili}</p>
                     <p>Freelencer</p>
                     <div className="row">
                       <div className="col-6">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
+                        <p>{profile.description}</p>
                       </div>
                     </div>
                     <Link to="/hire">
@@ -64,10 +70,10 @@ const pekerjaProfile = () => {
                     </Link>
                   </div>
                   <div className="col-3 mt-5">
-                    <h5>Skill</h5>
+                    <h5>Skillku</h5>
                     <div className="table table-borderless">
                       <td>
-                        <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Pyhton" border="none"></ButtonAlter>
+                        <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Pyton" border="none"></ButtonAlter>
                       </td>
                       <td>
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Laravel" border="none"></ButtonAlter>

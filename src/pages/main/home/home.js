@@ -24,7 +24,7 @@ const Home = () => {
               <option value="mercedes">Mercedes</option>
               <option value="audi">Audi</option>
             </select>
-            <div style={{ width: "100%", height: "", background: "red", display: "flex" }}>
+            <div style={{ width: "100%", height: "", display: "flex" }}>
               <Button btn="btn-search" title="Search" />
             </div>
           </div>
