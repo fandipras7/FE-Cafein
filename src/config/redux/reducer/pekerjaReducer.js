@@ -1,5 +1,11 @@
 const initialState = {
   pekerja: [],
+  pagination: {
+    currentPage: 0,
+    limit: 0,
+    totalData: 0,
+    totalPage: 0,
+  },
   isGeting: false,
   detailProfile: {},
   profile: {},
@@ -12,10 +18,11 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         isGeting: true,
       };
-    case "GET_PROFILE":
+    case "GET_ALL_WORKERS":
       return {
         ...state,
-        pekerja: action.payload,
+        pekerja: action.payload.workers,
+        pagination: action.payload.pagination,
       };
     case "GET_PROFILE_BY_ID":
       return {

@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import "./auth.css";
 import style from "./login.module.css";
 import { Input, Button } from "../../components/index";
-import { getCompanyById } from "../../config/redux/actions/companyAction"
+import { getCompanyById } from "../../config/redux/actions/companyAction";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Login = () => {
         if (res.data.data.role === "Recruiter") {
           const formData = new FormData();
           formData.append("id", res.data.data.id);
-          dispatch(getCompanyById(formData, res.data.data.token))
+          dispatch(getCompanyById(formData, res.data.data.token));
           Swal.fire({
             position: "center",
             icon: "success",
@@ -73,7 +73,7 @@ const Login = () => {
           {isLoading ? <Button title="Loading..." btn="btn-auth" /> : <Button onClick={(e) => handleLogin(e)} title="Masuk" btn="btn-auth" />}
           <p className="d-flex justify-content-center mt-3">
             Anda belum punya akun?
-            <span onClick={() => navigate("/registerUser")} className="register-sub">
+            <span onClick={() => navigate("/")} className="register-sub">
               &nbsp;Daftar disini
             </span>
           </p>

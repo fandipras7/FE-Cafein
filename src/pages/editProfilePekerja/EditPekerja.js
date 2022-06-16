@@ -41,7 +41,7 @@ const EditPekerja = () => {
     // data.append("address", dataProfile.address);
     // data.append("workplace", dataProfile.workplace);
     // data.append("description", dataProfile.description);
-    data.append("profileimage", dataProfile.profileimage);
+    data.append("Avatar", dataProfile.profileimage);
     e.preventDefault();
     // console.log(data);
     dispatch(editDataDiri(dataProfile));

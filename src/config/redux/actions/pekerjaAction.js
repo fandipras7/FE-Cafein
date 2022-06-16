@@ -1,5 +1,28 @@
 import axios from "axios";
 
+export const getWorkers =
+  ({ page, limit }) =>
+  async (dispatch) => {
+    try {
+      const token = localStorage.getItem("token");
+      const result = await axios({
+        method: "GET",
+        baseURL: process.env.REACT_APP_URL_API,
+        url: `/home?page=${page}&limit=${limit}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log(result.data.result);
+
+      const workers = result.data.hasil;
+      const pagination = result.data.pagination;
+      dispatch({ type: "GET_ALL_WORKERS", payload: { workers, pagination } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 export const getDataById = (data, setData, id) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
