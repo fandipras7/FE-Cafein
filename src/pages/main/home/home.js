@@ -7,18 +7,33 @@ import ava from "../../editProfilePekerja/img/ava.png";
 import ButtonAlter from "../../../components/Base/ButtonAlter";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkers } from "../../../config/redux/actions/pekerjaAction";
+import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
   const { pekerja, pagination } = useSelector((state) => state.pekerja);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [keyword, setKeyword] = useState();
   const [page, setPage] = useState({
     currentPage: 1,
     limit: 6,
+    keyword,
   });
 
+  const buttonPagination = [];
+
+  for (let i = 0; i < pagination.totalPage; i++) {
+    buttonPagination.push(<button onClick={() => setPage((current) => ({ ...current, currentPage: i + 1 }))}>{i + 1}</button>);
+  }
+
+  const HandleSearchParams = () => {
+    setSearchParams({ search: keyword });
+  };
+
   useEffect(() => {
-    dispatch(getWorkers({ page: page.currentPage, limit: page.limit }));
-  }, [page]);
+    dispatch(getWorkers({ page: page.currentPage, limit: page.limit, keyword: page.keyword }));
+    console.log("apakah jalan");
+  }, [page, searchParams]);
   return (
     <div className={style.main}>
       <Navbar />
@@ -28,7 +43,14 @@ const Home = () => {
       <div className="container">
         <div className={style["search-bar"]}>
           <div className={style["search-div"]}>
-            <Input type="search" css="inputSearch" placeholder="Search for any skill" />
+            <Input
+              onChange={(e) => {
+                setKeyword(e.target.value);
+              }}
+              type="search"
+              css="inputSearch"
+              placeholder="Search for any skill"
+            />
             <i className="fa fa-search" aria-hidden="true"></i>
           </div>
           <div className={style["search-sort"]}>
@@ -40,7 +62,14 @@ const Home = () => {
               <option value="audi">Sortir Berdasarkan freelence</option>
             </select>
             <div style={{ width: "100%", height: "", display: "flex" }}>
-              <Button btn="btn-search" title="Search" />
+              <Button
+                onClick={() => {
+                  HandleSearchParams();
+                  setPage({ ...page, keyword: keyword });
+                }}
+                btn="btn-search"
+                title="Search"
+              />
             </div>
           </div>
         </div>
@@ -64,18 +93,15 @@ const Home = () => {
                     }
                     return null;
                   })}
-                  <p>{item.dataSkill.length - 2 + "+"}</p>
+                  <p className="fw-bold">{item.dataSkill.length > 2 ? item.dataSkill.length - 2 + "+" : ""}</p>
                 </div>
               </CardAlter>
             </div>
           ))}
         </div>
-        <div>
-          <button onClick={() => setPage((current) => ({ ...current, currentPage: 1 }))}>1</button>
-
-          {/* <button onClick={() => setPage({ ...page, currentPage: 2 })}>2</button>
-          <button onClick={() => setPage({ ...page, currentPage: 3 })}>3</button>
-          <button onClick={() => setPage({ ...page, currentPage: 4 })}>4</button> */}
+        <div className="text-center mt-5">
+          {buttonPagination}
+          {/* <button onClick={() => setPage({ ...page, currentPage: 2 })}>2</button>*/}
         </div>
       </div>
     </div>

@@ -1,14 +1,15 @@
 import axios from "axios";
 
 export const getWorkers =
-  ({ page, limit }) =>
+  ({ page, limit, keyword }) =>
   async (dispatch) => {
     try {
+      console.log(keyword);
       const token = localStorage.getItem("token");
       const result = await axios({
         method: "GET",
         baseURL: process.env.REACT_APP_URL_API,
-        url: `/home?page=${page}&limit=${limit}`,
+        url: `/home?page=${page}&limit=${limit}${keyword ? "&search=" + keyword : ""}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
