@@ -17,8 +17,16 @@
   top: -70px;
 }
 
+.frame {
+  width: 15%;
+}
+
+.profileImage {
+  border-radius: 50%;
+}
+
 .dt_profile {
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .portfolioName {
