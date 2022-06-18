@@ -31,7 +31,7 @@ const Login = () => {
         localStorage.setItem("token", res.data.data.token);
         localStorage.setItem("refreshToken", res.data.data.refreshToken);
         localStorage.setItem("Role", res.data.data.role);
-        console.log(res.data);
+        localStorage.setItem("id", res.data.data.id);
         if (res.data.data.role === "Recruiter") {
           const formData = new FormData();
           formData.append("id", res.data.data.id);
