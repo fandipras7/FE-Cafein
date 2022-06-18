@@ -8,7 +8,7 @@ const initialState = {
   },
   isGeting: false,
   detailProfile: {},
-  profile: {},
+  loginProfile: {},
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -27,7 +27,7 @@ const profileReducer = (state = initialState, action) => {
     case "GET_PROFILE_BY_ID":
       return {
         ...state,
-        profile: action.payload.profile,
+        loginProfile: action.payload.profile,
       };
     case "GET_DETAIL_SUCCESS":
       // console.log(action.payload.profile.fullname);

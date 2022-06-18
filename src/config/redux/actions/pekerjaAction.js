@@ -59,7 +59,7 @@ export const getDataById = (data, setData, id) => async (dispatch) => {
 export const getProfileByID = (id) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-    const result = await axios.get(`${process.env.REACT_APP_URL_API}users/profile/${id}`, {
+    const result = await axios.get(`${process.env.REACT_APP_URL_API}users/profile${id ? "/" + id : "/"}`, {
       // "content-type": "multipart/form-data",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -79,18 +79,6 @@ export const editDataDiri = (dataform) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     console.log(dataform);
-    // const result = await axios(
-    //   {
-    //     method: "PUT",
-    //     baseURL: process.env.REACT_APP_URL_API,
-    //     url: `/users/profile`,
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   },
-    //   dataform
-    //   // { "content-type": "multipart/form-data" }
-    // );
     const result = await axios.put(`${process.env.REACT_APP_URL_API}users/profile`, dataform, {
       "content-type": "multipart/form-data",
       headers: {
@@ -98,6 +86,7 @@ export const editDataDiri = (dataform) => async (dispatch) => {
       },
     });
     const profile = result.data.data;
+    console.log(result);
     dispatch({ type: "EDIT_DATADIRI", payload: { profile } });
     // navigate("/storeprofile/myproduct");
   } catch (error) {

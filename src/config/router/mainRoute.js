@@ -32,6 +32,15 @@ function App() {
         <Route exact path="/" element={<Landingpage />} />
         <Route
           exact
+          path="/profilePekerja"
+          element={
+            <PrivateRoot>
+              <ProfilePekerja />
+            </PrivateRoot>
+          }
+        />
+        <Route
+          exact
           path="/profilePekerja/:id"
           element={
             <PrivateRoot>
@@ -41,7 +50,7 @@ function App() {
         />
         <Route
           exact
-          path="/editPekerja/:id"
+          path="/editPekerja"
           element={
             <PrivateRoot>
               <EditPekerja />

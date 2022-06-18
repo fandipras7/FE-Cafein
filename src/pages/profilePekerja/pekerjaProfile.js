@@ -22,12 +22,12 @@ const pekerjaProfile = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
-  const { profile } = useSelector((state) => state.pekerja);
+  const { loginProfile } = useSelector((state) => state.pekerja);
   const { id } = useParams();
 
-  console.log(profile);
+  console.log(loginProfile);
   useEffect(() => {
-    dispatch(getProfileByID(id));
+    dispatch(getProfileByID());
   }, []);
 
   return (
@@ -41,7 +41,7 @@ const pekerjaProfile = () => {
               <div className={"col " + styles.bg_image}>
                 <button
                   onClick={() => {
-                    navigate(`/editpekerja/${id}`);
+                    navigate(`/editpekerja`);
                   }}
                   className={styles.btnInput}
                 >
@@ -51,18 +51,18 @@ const pekerjaProfile = () => {
             </div>
             <div className="row">
               <div className="col position-relative px-5 bg-white">
-                <div className="">
-                  <img src={ava} alt="" />
+                <div className={`${styles.frame}`}>
+                  <img className={`${styles.profileImage} img-fluid`} src={loginProfile && loginProfile.profileimage} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">
-                    <h5>{profile.fullname}</h5>
-                    <p>{profile.jobdesk}</p>
-                    <p>{profile.domisili}</p>
+                    <h5>{loginProfile.fullname}</h5>
+                    <p>{loginProfile.jobdesk}</p>
+                    <p>{loginProfile.domisili}</p>
                     <p>Freelencer</p>
                     <div className="row">
                       <div className="col-6">
-                        <p>{profile.description}</p>
+                        <p>{loginProfile.description}</p>
                       </div>
                     </div>
                     <Link to="/hire">
@@ -72,17 +72,27 @@ const pekerjaProfile = () => {
                   <div className="col-3 mt-5">
                     <h5>Skillku</h5>
                     <div className="table table-borderless">
-                      <td>
-                        <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Pyton" border="none"></ButtonAlter>
-                      </td>
-                      <td>
+                      <div className="row row-cols-3">
+                        {/* {loginProfile.skill[1]} */}
+
+                        {loginProfile.skill
+                          ? loginProfile.skill.map((item) => (
+                              <div className="col">
+                                <td>
+                                  <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
+                                </td>
+                              </div>
+                            ))
+                          : "Skill kosong"}
+                      </div>
+                      {/* <td>
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Laravel" border="none"></ButtonAlter>
                       </td>
                       <td>
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Golang" border="none"></ButtonAlter>
-                      </td>
+                      </td> */}
                     </div>
-                    <div className="table table-borderless">
+                    {/* <div className="table table-borderless">
                       <td>
                         <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Javascript" border="none"></ButtonAlter>
                       </td>
@@ -103,7 +113,7 @@ const pekerjaProfile = () => {
                       <td>
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Swift" border="none"></ButtonAlter>
                       </td>
-                    </div>
+                    </div> */}
                     <div className="table table-borderless">
                       <tr>
                         <td>
@@ -112,7 +122,7 @@ const pekerjaProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">Louistommo@gmail.com</p>
+                          <p className="mt-1">{loginProfile.email}</p>
                         </td>
                       </tr>
                       <tr>
@@ -122,7 +132,7 @@ const pekerjaProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">@Louist91</p>
+                          <p className="mt-1">{`@${loginProfile.fullname}`}</p>
                         </td>
                       </tr>
                       <tr>
@@ -132,7 +142,7 @@ const pekerjaProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">@Louistommo</p>
+                          <p className="mt-1">{`@${loginProfile.fullname}`}</p>
                         </td>
                       </tr>
                       <tr>
@@ -140,7 +150,7 @@ const pekerjaProfile = () => {
                           <img className="mt-1" src={bntg} alt="" />
                         </td>
                         <td>
-                          <p className="mt-1">@Louist91</p>
+                          <p className="mt-1">{`@${loginProfile.fullname}`}</p>
                         </td>
                       </tr>
                     </div>
@@ -154,44 +164,34 @@ const pekerjaProfile = () => {
                     </ButtonAlter>
                     {show ? (
                       <div className="row row-cols-4 mt-5">
-                        <div className="col">
-                          <img className="img-fluid" src={p1} alt="" />
-                          <p className={styles.portfolioName}>Remainder app</p>
-                        </div>
-                        <div className="col">
-                          <img className="img-fluid" src={p2} alt="" />
-                          <p className={styles.portfolioName}>Remainder app</p>
-                        </div>
-                        <div className="col">
-                          <img className="img-fluid" src={p3} alt="" />
-                          <p className={styles.portfolioName}>Remainder app</p>
-                        </div>
-                        <div className="col">
-                          <img className="img-fluid" src={p4} alt="" />
-                          <p className={styles.portfolioName}>Remainder app</p>
-                        </div>
-                        <div className="col">
-                          <img src={p4} alt="" />
-                          <p className={styles.portfolioName}>Remainder app</p>
-                        </div>
+                        {loginProfile.port &&
+                          loginProfile.port.map((item) => (
+                            <div className="col">
+                              <img className="img-fluid" src={item.image} alt="" />
+                              <p className={styles.portfolioName}>{item.aplicationname}</p>
+                            </div>
+                          ))}
                       </div>
                     ) : (
                       <div className="row mt-5">
                         <div className="col">
-                          <div className="table table-borderless">
-                            <td className="col-1">
-                              <div>
-                                <img src={tokped} alt="" />
+                          {loginProfile.work &&
+                            loginProfile.work.map((item) => (
+                              <div className="table table-borderless">
+                                <td className="col-1">
+                                  <div>
+                                    <img src={tokped} alt="" />
+                                  </div>
+                                </td>
+                                <td>
+                                  <p className="fw-bold">{item.position}</p>
+                                  <span>{item.companyname}</span>
+                                  <p>{item.date}</p>
+                                  <p>{item.description}</p>
+                                </td>
                               </div>
-                            </td>
-                            <td>
-                              <p className="fw-bold">Enginer</p>
-                              <span>Tokopedia</span>
-                              <p>July 2019-January 2020 6 month</p>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
-                            </td>
-                          </div>
-                          <div className="table table-borderless">
+                            ))}
+                          {/* <div className="table table-borderless">
                             <td className="col-1">
                               <div>
                                 <img src={tokped} alt="" />
@@ -203,7 +203,7 @@ const pekerjaProfile = () => {
                               <p>July 2019-January 2020 6 month</p>
                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
                             </td>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     )}

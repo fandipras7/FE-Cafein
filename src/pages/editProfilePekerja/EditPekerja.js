@@ -9,7 +9,7 @@ import Label from "../../components/Base/Label";
 import Input from "../../components/Base/Input";
 import Footer from "../../components/Module/footer";
 import portoImg from "./img/backimg.PNG";
-import { addnewSkill, addPortofolio, addWorkExperience, editDataDiri, getDataById, uploadAva } from "../../config/redux/actions/pekerjaAction";
+import { addnewSkill, addPortofolio, addWorkExperience, editDataDiri, getDataById, getProfileByID, uploadAva } from "../../config/redux/actions/pekerjaAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -17,35 +17,33 @@ const EditPekerja = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { detailProfile } = useSelector((state) => state.pekerja);
-  // const [profile2, setProfile2] = useState({});
-  // const { profile } = detailProfile;
+  const { loginProfile } = useSelector((state) => state.pekerja);
 
   // dataDiri
   const [dataProfile, setDataProfile] = useState({
-    fullname: "",
-    jobdesk: "",
-    address: "",
-    workplace: "",
-    profileimage: "",
-    description: "",
+    fullname: loginProfile.fullname,
+    jobdesk: loginProfile.jobdesk,
+    address: loginProfile.address,
+    workplace: loginProfile.workplace,
+    profileimage: loginProfile.profileimage,
+    description: loginProfile.description,
   });
 
   // ava profile
-  const [avatar, setAvatar] = useState(detailProfile.profileImage);
+  const [avatar, setAvatar] = useState(loginProfile.profileimage);
 
   const handleDataDiri = (e) => {
     const data = new FormData();
-    // data.append("fullname", dataProfile.name);
-    // data.append("jobdesk", dataProfile.jobdesk);
-    // data.append("address", dataProfile.address);
-    // data.append("workplace", dataProfile.workplace);
-    // data.append("description", dataProfile.description);
-    data.append("Avatar", dataProfile.profileimage);
+    data.append("fullname", dataProfile.fullname);
+    data.append("jobdesk", dataProfile.jobdesk);
+    data.append("address", dataProfile.address);
+    data.append("workplace", dataProfile.workplace);
+    data.append("description", dataProfile.description);
+    data.append("avatar", dataProfile.profileimage);
     e.preventDefault();
     // console.log(data);
-    dispatch(editDataDiri(dataProfile));
-    dispatch(uploadAva(data));
+    dispatch(editDataDiri(data));
+    // dispatch(uploadAva(data));
   };
 
   // Skill
@@ -120,11 +118,10 @@ const EditPekerja = () => {
 
   console.log(dataProfile.profileimage);
 
-  useEffect(() => {
-    dispatch(getDataById(dataProfile, setDataProfile, id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getProfileByID());
+  // }, [cancel]);
 
-  // console.log(profile2);
   return (
     <div>
       <Navbar isLogin={true}></Navbar>
@@ -154,7 +151,7 @@ const EditPekerja = () => {
                           uploadImage(e);
                         }}
                       />
-                      <p className="fs-5 fw-bold">{detailProfile.fullname}</p>
+                      <p className="fs-5 fw-bold">{loginProfile.fullname}</p>
                       <span>Web Developer</span>
                       <p className="fw-light">Purwokerto, Jawa Tengah</p>
                       <span className="fw-light">Freelancer</span>
@@ -162,7 +159,7 @@ const EditPekerja = () => {
                     <ButtonAlter
                       onClick={(e) => {
                         handleDataDiri(e);
-                        navigate(`/profilePekerja/${detailProfile.iduser}`);
+                        navigate(`/profilePekerja`);
                       }}
                       className="mt-3 py-2"
                       width="100%"
@@ -172,7 +169,24 @@ const EditPekerja = () => {
                     >
                       Simpan
                     </ButtonAlter>
-                    <ButtonAlter className="mt-3 py-2" width="100%" backgroundColor="white" color="#5E50A1" border="1px solid gray">
+                    <ButtonAlter
+                      onClick={(e) => {
+                        setDataProfile({
+                          ...dataProfile,
+                          fullname: loginProfile.fullname,
+                          jobdesk: loginProfile.jobdesk,
+                          address: loginProfile.address,
+                          workplace: loginProfile.workplace,
+                          description: loginProfile.description,
+                        });
+                        setAvatar(loginProfile.profileimage);
+                      }}
+                      className="mt-3 py-2"
+                      width="100%"
+                      backgroundColor="white"
+                      color="#5E50A1"
+                      border="1px solid gray"
+                    >
                       Batal
                     </ButtonAlter>
                   </div>
