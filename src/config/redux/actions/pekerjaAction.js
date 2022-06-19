@@ -16,7 +16,7 @@ export const getWorkers =
       });
       // console.log(result.data.result);
 
-      const workers = result.data.hasil;
+      const workers = result.data.val;
       const pagination = result.data.pagination;
       dispatch({ type: "GET_ALL_WORKERS", payload: { workers, pagination } });
     } catch (error) {

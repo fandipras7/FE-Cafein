@@ -9,6 +9,7 @@ const initialState = {
   isGeting: false,
   detailProfile: {},
   loginProfile: {},
+  isEdit: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -39,6 +40,7 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         detailProfile: action.payload.profile,
+        isEdit: true,
       };
     case "ADD_NEW_SKILL":
       return {

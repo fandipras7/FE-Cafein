@@ -16,7 +16,7 @@ const Home = () => {
   const [keyword, setKeyword] = useState();
   const [page, setPage] = useState({
     currentPage: 1,
-    limit: 6,
+    limit: 5,
     keyword,
   });
 
@@ -87,13 +87,20 @@ const Home = () => {
                   <p className="fw-light ms-2">Lorem Ipsum</p>
                 </td>
                 <div className="d-flex">
-                  {item.dataSkill.map((skill, i) => {
+                  {/* {item.dataSkill.map((skill, i) => {
                     if (i <= 1) {
                       return <ButtonAlter className="me-2" backgroundColor="#FBB01799" color="white" borderRadius="4px" title={skill.skillname} border="none"></ButtonAlter>;
                     }
                     return null;
-                  })}
-                  <p className="fw-bold">{item.dataSkill.length > 2 ? item.dataSkill.length - 2 + "+" : ""}</p>
+                  })} */}
+                  {item.skill.length > 0 &&
+                    item.skill.map((item, i) => {
+                      if (i <= 1) {
+                        return <ButtonAlter className="me-2" backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item} border="none"></ButtonAlter>;
+                      }
+                      return null;
+                    })}
+                  <p className="fw-bold">{item.skill.length > 2 ? item.skill.length - 2 + "+" : ""}</p>
                 </div>
               </CardAlter>
             </div>

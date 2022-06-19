@@ -52,7 +52,7 @@ const pekerjaProfile = () => {
             <div className="row">
               <div className="col position-relative px-5 bg-white">
                 <div className={`${styles.frame}`}>
-                  <img className={`${styles.profileImage} img-fluid`} src={loginProfile && loginProfile.profileimage} alt="" />
+                  <img className={`${styles.profileImage} img-fluid`} src={loginProfile.profileimage} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">

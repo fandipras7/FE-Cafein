@@ -159,7 +159,7 @@ const EditPekerja = () => {
                     <ButtonAlter
                       onClick={(e) => {
                         handleDataDiri(e);
-                        navigate(`/profilePekerja`);
+                        // navigate(`/profilePekerja`);
                       }}
                       className="mt-3 py-2"
                       width="100%"
