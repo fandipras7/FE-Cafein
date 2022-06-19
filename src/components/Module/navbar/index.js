@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = ({ className, ...props }) => {
   const { user } = useSelector((state) => state.user);
-  console.log(user);
+  // console.log(user);
   // const isLogin = props.isLogin;
   // const isLogin = props.isLogin;
   const [isLogin, setLogin] = useState(false);

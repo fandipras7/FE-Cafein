@@ -17,10 +17,13 @@ const CompanyProfile = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
     const formData = new FormData();
-    formData.append("id", companyId.idcompany);
+    formData.append("id", id);
     dispatch(getCompanyById(formData, token))
+   
   }, [])
+
   
 
   return (
