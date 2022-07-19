@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const getWorkers =
   ({ page, limit, keyword }) =>
@@ -108,11 +109,19 @@ export const addnewSkill = (data) => async (dispatch) => {
     // const profile = result.data.data;
     dispatch({ type: "ADD_NEW_SKILL" /*payload: { profile } */ });
     // navigate("/storeprofile/myproduct");
-    alert("Berhasil menambah skill");
+    Swal.fire({
+      icon: 'success',
+      title: "Add Skill Success",
+      text: ""
+    })
     // console.log(data);
   } catch (error) {
     console.log(error);
-    alert("gagal ADD_NEW_SKILL");
+    Swal.fire({
+      icon: 'success',
+      title: "Failed to Add Skill",
+      text: ""
+    })
   }
 };
 

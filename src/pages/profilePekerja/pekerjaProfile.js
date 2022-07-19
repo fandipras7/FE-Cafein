@@ -52,7 +52,7 @@ const pekerjaProfile = () => {
             <div className="row">
               <div className="col position-relative px-5 bg-white">
                 <div className={`${styles.frame}`}>
-                  <img className={`${styles.profileImage} img-fluid`} src={loginProfile.profileimage} alt="" />
+                  <img className={`${styles.profileImage} img-fluid`} src={loginProfile.profileimage ? loginProfile.profileimage : ava} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">
@@ -78,12 +78,12 @@ const pekerjaProfile = () => {
                         {loginProfile.skill
                           ? loginProfile.skill.map((item) => (
                               <div className="col">
-                                <td>
+                                <td className={styles.tableSkill}>
                                   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
                                 </td>
                               </div>
                             ))
-                          : "Skill kosong"}
+                          : "Belum ada skill"}
                       </div>
                       {/* <td>
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Laravel" border="none"></ButtonAlter>
@@ -156,18 +156,41 @@ const pekerjaProfile = () => {
                     </div>
                   </div>
                   <div className="col">
-                    <ButtonAlter onClick={() => setShow(true)} border="none" backgroundColor="white">
-                      <p className="fs-5">Portofolio</p>
+                    <ButtonAlter
+                      onClick={() => {
+                        setShow(true);
+                        let porto = document.getElementById("porto");
+                        let work = document.getElementById("work");
+                        work.style.border = "none";
+                        porto.style.borderBottom = "1px solid black";
+                      }}
+                      border="none"
+                      backgroundColor="white"
+                    >
+                      <p id="porto" className="fs-5">
+                        Portofolio
+                      </p>
                     </ButtonAlter>
-                    <ButtonAlter onClick={() => setShow(false)} border="none" backgroundColor="white">
+                    <ButtonAlter
+                      onClick={() => {
+                        setShow(false);
+                        let porto = document.getElementById("porto");
+                        let work = document.getElementById("work");
+                        work.style.borderBottom = "1px solid black";
+                        porto.style.border = "none";
+                      }}
+                      id="work"
+                      border="none"
+                      backgroundColor="white"
+                    >
                       <p className="fs-5">Penglaman Kerja</p>
                     </ButtonAlter>
                     {show ? (
                       <div className="row row-cols-4 mt-5">
                         {loginProfile.port &&
                           loginProfile.port.map((item) => (
-                            <div className="col">
-                              <img className="img-fluid" src={item.image} alt="" />
+                            <div className={`col`}>
+                              <img className={"img-fluid " + styles.shadow} src={item.image} alt="" />
                               <p className={styles.portfolioName}>{item.aplicationname}</p>
                             </div>
                           ))}

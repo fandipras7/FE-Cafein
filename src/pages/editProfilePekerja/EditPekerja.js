@@ -12,6 +12,7 @@ import portoImg from "./img/backimg.PNG";
 import { addnewSkill, addPortofolio, addWorkExperience, editDataDiri, getDataById, getProfileByID, uploadAva } from "../../config/redux/actions/pekerjaAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const EditPekerja = () => {
   const { id } = useParams();
@@ -135,7 +136,7 @@ const EditPekerja = () => {
                 <div className="row">
                   <div className="col-4">
                     <CardAlter
-                      img={avatar}
+                      img={avatar? avatar : ava}
                       onChange={(e) => {
                         uploadImage(e);
                       }}
@@ -143,8 +144,11 @@ const EditPekerja = () => {
                       titleImg="Edit"
                       width="100%"
                     >
+                      <label className={styles.edit} htmlFor="files">Edit photo</label>
                       <input
+                        hidden="true"
                         type="file"
+                        id="files"
                         className="form-control btn text-center"
                         accept="image/"
                         onChange={(e) => {
@@ -159,7 +163,7 @@ const EditPekerja = () => {
                     <ButtonAlter
                       onClick={(e) => {
                         handleDataDiri(e);
-                        // navigate(`/profilePekerja`);
+                        navigate(`/profilePekerja`);
                       }}
                       className="mt-3 py-2"
                       width="100%"
@@ -316,10 +320,10 @@ const EditPekerja = () => {
                         css="input-form"
                         placeholder="Masukan Link Repository"
                       ></Input>
-                      <div className="row">
-                        <Label className="mt-2" title="type portfolio"></Label>
+                      <div className="">
+                        <Label className="mt-2" title="Type portfolio"></Label>
                         <div className="col-sm-6">
-                          <div style={{ border: "1px solid black" }} className="form-check form-check-inline p-2">
+                          <div className="form-check form-check-inline p-2">
                             <input
                               className="form-check-input ms-2"
                               type="radio"

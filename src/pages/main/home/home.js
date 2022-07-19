@@ -13,7 +13,10 @@ const Home = () => {
   const { pekerja, pagination } = useSelector((state) => state.pekerja);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // console.log(searchParams.get('search'));
   const [keyword, setKeyword] = useState();
+
   const [page, setPage] = useState({
     currentPage: 1,
     limit: 5,
@@ -22,12 +25,21 @@ const Home = () => {
 
   const buttonPagination = [];
 
-  for (let i = 0; i < pagination.totalPage; i++) {
-    buttonPagination.push(<button onClick={() => setPage((current) => ({ ...current, currentPage: i + 1 }))}>{i + 1}</button>);
+  for (let i = 0; i < pagination.totalPage; i += 1) {
+    buttonPagination.push(i);
   }
 
+  // for (let i = 0; i < pagination.totalPage; i++) {
+  //   buttonPagination.push(<button onClick={() => setPage((current) => ({ ...current, currentPage: i + 1 }))}>{i + 1}</button>);
+  // }
+
+
   const HandleSearchParams = () => {
-    setSearchParams({ search: keyword });
+    setSearchParams(
+      {
+        search: keyword,
+      }
+    )
   };
 
   useEffect(() => {
@@ -106,9 +118,66 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <div className="text-center mt-5">
-          {buttonPagination}
+        <div className="text-center mt-3">
+          {/* {buttonPagination} */}  
           {/* <button onClick={() => setPage({ ...page, currentPage: 2 })}>2</button>*/}
+          <nav className="mt-4">
+                <ul className="pagination justify-content-center">
+                  <li
+                    className={`page-item ${page.currentPage <= 1 && 'disabled'}`}
+                  >
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={() => {
+                        // const newPage = {
+                        //   currentPage: page.currentPage - 1,
+                        //   limit: page.limit
+                        // }
+                        setPage((current) => ({ ...current, currentPage: current.currentPage -1 }))
+
+                      }
+                      }
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  {buttonPagination.map((item, index) => (
+                    <li
+                      className={`page-item ${index + 1 === page.currentPage && 'active'
+                        }`}
+                      key={Math.random(100)}
+                    >
+                      <button
+                        onClick={() => index + 1}
+                        type="button"
+                        className="page-link"
+                      >
+                        {index + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li
+                    className={`page-item ${page.currentPage === pagination.totalPage && 'disabled'
+                      }`}
+                  >
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={() => {
+                        // const newPage = {
+                        //   currentPage: page.currentPage + 1,
+                        //   limit: page.limit
+                        // }
+                        setPage((current) => ({ ...current, currentPage: current.currentPage + 1 }))
+
+                      }}
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
         </div>
       </div>
     </div>

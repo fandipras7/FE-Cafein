@@ -13,3 +13,13 @@ hr {
 .hr2 {
   margin-top: 40px;
 }
+
+.edit {
+  font-style: italic;
+  width: 100%;
+  text-align: center;
+}
+
+.edit:hover {
+  cursor: pointer;
+}
