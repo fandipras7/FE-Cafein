@@ -57,8 +57,9 @@ export const getDataById = (data, setData, id) => async (dispatch) => {
   }
 };
 
-export const getProfileByID = (id) => async (dispatch) => {
+export const getProfile = (id) => async (dispatch) => {
   try {
+    dispatch({ type: "GET_PROFILE_PENDING"});
     const token = localStorage.getItem("token");
     const result = await axios.get(`${process.env.REACT_APP_URL_API}users/profile${id ? "/" + id : "/"}`, {
       // "content-type": "multipart/form-data",
@@ -68,7 +69,11 @@ export const getProfileByID = (id) => async (dispatch) => {
     });
     const profile = result.data.data;
     // console.log(profile);
-    dispatch({ type: "GET_PROFILE_BY_ID", payload: { profile } });
+    if(!id){
+      dispatch({ type: "GET_PROFILE_LOGIN", payload: { profile } });
+    } else {
+      dispatch({ type: "GET_OTHER_PROFILE", payload: { profile } });
+    }
     // navigate("/storeprofile/myproduct");
   } catch (error) {
     console.log(error);

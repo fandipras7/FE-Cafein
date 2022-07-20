@@ -3,7 +3,7 @@ import styles from "./card.module.css";
 
 const CardAlter = ({ img, titleImg, width, children, ...props }) => {
   return (
-    <div className="card mt-4" style={{ width: width }}>
+    <div onClick={props.onClick} className="card mt-4" style={{ width: width }}>
       <div className={"text-center"}>
         <img src={img} className={"img-fluid text-center " + styles.fp} alt="" />
         {/* <p className="text-center">{titleImg}</p> */}

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Home from "../../pages/main";
 import Landingpage from "../../pages/landingPage/landingPage";
 import ProfilePekerja from "../../pages/profilePekerja/pekerjaProfile";
+import DetailProfile from "../../pages/detailPekerja";
 import EditPekerja from "../../pages/editProfilePekerja/EditPekerja";
 import Hire from "../../pages/hire/Hire";
 import Home from "../../pages/main/home/home";
@@ -41,10 +42,10 @@ function App() {
         />
         <Route
           exact
-          path="/profilePekerja/:id"
+          path="/detailPekerja/:id"
           element={
             <PrivateRoot>
-              <ProfilePekerja />
+              <DetailProfile />
             </PrivateRoot>
           }
         />

@@ -7,14 +7,14 @@ import ava from "../../editProfilePekerja/img/ava.png";
 import ButtonAlter from "../../../components/Base/ButtonAlter";
 import { useDispatch, useSelector } from "react-redux";
 import { getWorkers } from "../../../config/redux/actions/pekerjaAction";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Home = () => {
   const { pekerja, pagination } = useSelector((state) => state.pekerja);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // console.log(searchParams.get('search'));
+  const navigate = useNavigate()
   const [keyword, setKeyword] = useState();
 
   const [page, setPage] = useState({
@@ -29,11 +29,6 @@ const Home = () => {
     buttonPagination.push(i);
   }
 
-  // for (let i = 0; i < pagination.totalPage; i++) {
-  //   buttonPagination.push(<button onClick={() => setPage((current) => ({ ...current, currentPage: i + 1 }))}>{i + 1}</button>);
-  // }
-
-
   const HandleSearchParams = () => {
     setSearchParams(
       {
@@ -41,6 +36,8 @@ const Home = () => {
       }
     )
   };
+
+  console.log(pagination);
 
   useEffect(() => {
     dispatch(getWorkers({ page: page.currentPage, limit: page.limit, keyword: page.keyword }));
@@ -89,7 +86,7 @@ const Home = () => {
         <div className="row row-cols-4">
           {pekerja.map((item) => (
             <div className="col">
-              <CardAlter img={ava}>
+              <CardAlter onClick={()=>navigate(`/detailPekerja/${item.iduser}`)} img={ava}>
                 <p className="fs-5">{item.fullname}</p>
                 <p className="fw-light">{item.jobdesk}</p>
                 <td>

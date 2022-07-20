@@ -6,8 +6,8 @@ const initialState = {
     totalData: 0,
     totalPage: 0,
   },
-  isGeting: false,
-  detailProfile: {},
+  isLoading: false,
+  othersProfile: {},
   loginProfile: {},
   isEdit: false,
 };
@@ -17,7 +17,7 @@ const profileReducer = (state = initialState, action) => {
     case "GET_PROFILE_PENDING":
       return {
         ...state,
-        isGeting: true,
+        isLoading: true,
       };
     case "GET_ALL_WORKERS":
       return {
@@ -25,16 +25,17 @@ const profileReducer = (state = initialState, action) => {
         pekerja: action.payload.workers,
         pagination: action.payload.pagination,
       };
-    case "GET_PROFILE_BY_ID":
+    case "GET_PROFILE_LOGIN":
       return {
         ...state,
         loginProfile: action.payload.profile,
       };
-    case "GET_DETAIL_SUCCESS":
+    case "GET_OTHER_PROFILE":
       // console.log(action.payload.profile.fullname);
       return {
         ...state,
-        detailProfile: action.payload.profile,
+        othersProfile: action.payload.profile,
+        isLoading: false
       };
     case "EDIT_DATADIRI":
       return {

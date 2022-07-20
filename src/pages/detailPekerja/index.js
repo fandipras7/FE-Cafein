@@ -18,55 +18,44 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataById, getProfile, getProfileByID } from "../../config/redux/actions/pekerjaAction";
 import { Link } from "react-router-dom";
 
-const pekerjaProfile = () => {
+const DetailProfile = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
-  const { loginProfile } = useSelector((state) => state.pekerja);
+  const { othersProfile, isLoading } = useSelector((state) => state.pekerja);
   const { id } = useParams();
+  const role = localStorage.getItem('Role')
 
-  const role = localStorage.getItem("Role");
-
-  // console.log(loginProfile);
-  console.log(role);
+  console.log(othersProfile);
   useEffect(() => {
-    // dispatch(getProfileByID());
-    dispatch(getProfile());
+    dispatch(getProfile(id));
   }, []);
 
   return (
     <div>
       <Navbar />
 
-      <main>
+      {isLoading ? <div className="vh-100 text-align-center"><h3>Geting Profile...</h3></div> : <main>
         <div className="container-fluid bg-light">
           <div className="container position-relative mt-5">
             <div className="row position-relative">
               <div className={"col " + styles.bg_image}>
-                <button
-                  onClick={() => {
-                    navigate(`/editpekerja`);
-                  }}
-                  className={styles.btnInput}
-                >
-                  edit profile
-                </button>
               </div>
             </div>
             <div className="row">
               <div className="col position-relative px-5 bg-white">
                 <div className={`${styles.frame}`}>
-                  <img className={`${styles.profileImage} img-fluid`} src={loginProfile.profileimage ? loginProfile.profileimage : ava} alt="" />
+                  <img className={`${styles.profileImage} img-fluid`} src={othersProfile.profileimage ? othersProfile.profileimage : ava} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">
-                    <h5>{loginProfile.fullname}</h5>
-                    <p>{loginProfile.jobdesk}</p>
-                    <p>{loginProfile.domisili}</p>
+                    <h5>{othersProfile.fullname}</h5>
+                    <p>{othersProfile.jobdesk}</p>
+                    <p>{othersProfile.domisili}</p>
                     <p>Freelencer</p>
                     <div className="row">
                       <div className="col-6">
-                        <p>{loginProfile.description}</p>
+                        <p>{othersProfile.description}</p>
                       </div>
                     </div>
                     {role.toLowerCase().includes("company") && (
@@ -77,17 +66,47 @@ const pekerjaProfile = () => {
                   </div>
                   <div className="col-4 mt-5">
                     <h5>Skill</h5>
-
                     <div className="row row-cols-4 gap-2">
-                      {loginProfile.skill
-                        ? loginProfile.skill.map((item) => (
-                            // <div className="col text-center ms-1 mb-2">
-                            //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
-                            // </div>
-                            <p className={styles.skill + " text-center"}>{item.skillname}</p>
-                          ))
+                      {/* {othersProfile.skill[1]} */}
+
+                      {othersProfile.skill
+                        ? othersProfile.skill.map((item) => (
+                          // <div className="col text-center ms-1 mb-2">
+                          //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
+                          // </div>
+                          <p className={styles.skill + " text-center"}>{item.skillname}</p>
+                        ))
                         : "Belum ada skill"}
                     </div>
+                    {/* <td>
+                        <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Laravel" border="none"></ButtonAlter>
+                      </td>
+                      <td>
+                        <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Golang" border="none"></ButtonAlter>
+                      </td> */}
+
+                    {/* <div className="table table-borderless">
+                      <td>
+                        <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Javascript" border="none"></ButtonAlter>
+                      </td>
+                      <td>
+                        <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="PHP" border="none"></ButtonAlter>
+                      </td>
+                      <td>
+                        <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="HTML" border="none"></ButtonAlter>
+                      </td>
+                    </div>
+                    <div className="table table-borderless">
+                      <td>
+                        <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title="C++" border="none"></ButtonAlter>
+                      </td>
+                      <td>
+                        <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Kotlin" border="none"></ButtonAlter>
+                      </td>
+                      <td>
+                        <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Swift" border="none"></ButtonAlter>
+                      </td>
+                    </div> */}
                     <div className="table table-borderless">
                       <tr>
                         <td>
@@ -96,7 +115,7 @@ const pekerjaProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">{loginProfile.email}</p>
+                          <p className="mt-1">{othersProfile.email}</p>
                         </td>
                       </tr>
                       <tr>
@@ -106,7 +125,7 @@ const pekerjaProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">{`@${loginProfile.fullname}`}</p>
+                          <p className="mt-1">{`@${othersProfile.fullname}`}</p>
                         </td>
                       </tr>
                       <tr>
@@ -116,7 +135,7 @@ const pekerjaProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">{`@${loginProfile.fullname}`}</p>
+                          <p className="mt-1">{`@${othersProfile.fullname}`}</p>
                         </td>
                       </tr>
                       <tr>
@@ -124,7 +143,7 @@ const pekerjaProfile = () => {
                           <img className="mt-1" src={bntg} alt="" />
                         </td>
                         <td>
-                          <p className="mt-1">{`@${loginProfile.fullname}`}</p>
+                          <p className="mt-1">{`@${othersProfile.fullname}`}</p>
                         </td>
                       </tr>
                     </div>
@@ -161,8 +180,8 @@ const pekerjaProfile = () => {
                     </ButtonAlter>
                     {show ? (
                       <div className="row row-cols-4 mt-5">
-                        {loginProfile.port &&
-                          loginProfile.port.map((item) => (
+                        {othersProfile.port &&
+                          othersProfile.port.map((item) => (
                             <div className={`col`}>
                               <img className={"img-fluid " + styles.shadow} src={item.image} alt="" />
                               <p className={styles.portfolioName}>{item.aplicationname}</p>
@@ -172,8 +191,8 @@ const pekerjaProfile = () => {
                     ) : (
                       <div className="row mt-5">
                         <div className="col">
-                          {loginProfile.work &&
-                            loginProfile.work.map((item) => (
+                          {othersProfile.work &&
+                            othersProfile.work.map((item) => (
                               <div className="table table-borderless">
                                 <td className="col-1">
                                   <div>
@@ -210,10 +229,10 @@ const pekerjaProfile = () => {
             </div>
           </div>
         </div>
-      </main>
+      </main>}
       <Footer className="px-5 py-2"></Footer>
     </div>
   );
 };
 
-export default pekerjaProfile;
+export default DetailProfile;
