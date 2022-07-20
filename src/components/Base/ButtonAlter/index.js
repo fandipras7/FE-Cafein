@@ -2,7 +2,7 @@ import React from "react";
 
 const ButtonAlter = ({ backgroundColor, border, children, ...props }) => {
   return (
-    <button style={{ border: border, width: props.width, height: props.height, backgroundColor: backgroundColor, borderRadius: props.borderRadius, color: props.color }} {...props}>
+    <button onClick={props.onClick} className={props.className} style={{ border: border, width: props.width, height: props.height, backgroundColor: backgroundColor, borderRadius: props.borderRadius, color: props.color }} {...props}>
       {children ? children : props.title}
     </button>
   );

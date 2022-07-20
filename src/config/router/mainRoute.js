@@ -13,6 +13,8 @@ import RegisterCompany from "../../pages/auth/registerCompany";
 import CompanyProfile from "../../pages/main/companyProfile/companyProfile";
 import EditCompany from "../../pages/main/editCompanyProfile/editCompany";
 import PrivateRoot from "../../components/Base/privateroot";
+import History from "../../pages/history/history";
+import RecruiterProfile from "../../pages/main/recruiterProfile/companyProfile";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route exact path="/registerUser" element={<RegisterUser />} />
         <Route exact path="/registerCompany" element={<RegisterCompany />} />
         <Route exact path="/" element={<Landingpage />} />
+        <Route exact path="/History" element={<History />} />
+        <Route exact path="/recruiterProfile" element={<RecruiterProfile />} />
         <Route
           exact
           path="/profilePekerja"
