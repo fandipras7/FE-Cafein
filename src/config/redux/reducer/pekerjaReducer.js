@@ -10,6 +10,7 @@ const initialState = {
   othersProfile: {},
   loginProfile: {},
   isEdit: false,
+  skill: []
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -59,6 +60,11 @@ const profileReducer = (state = initialState, action) => {
     case "UPLOAD_AVA":
       return {
         ...state,
+      };
+    case "GET_SKILL":
+      return {
+        ...state,
+        skill: action.payload.skill
       };
     default:
       return state;

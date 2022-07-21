@@ -38,6 +38,7 @@ const Home = () => {
   };
 
   console.log(pagination);
+  
 
   useEffect(() => {
     dispatch(getWorkers({ page: page.currentPage, limit: page.limit, keyword: page.keyword }));

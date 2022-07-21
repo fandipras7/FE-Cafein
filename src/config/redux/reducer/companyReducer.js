@@ -16,7 +16,7 @@ const initialState = {
         "instagram": "",
         "companyphone": "",
         "linkedin": "",
-        "profileimage": null
+        "profileimage": ""
     },
 }
 

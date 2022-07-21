@@ -40,7 +40,7 @@ const CompanyProfile = () => {
             <div className="row">
               <div className={"col position-relative bg-white"}>
                 <div className={styles.ava}>
-                  <img src={ava} alt="" />
+                  <img src={companyId.profileimage ?  companyId.profileimage : ava} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">

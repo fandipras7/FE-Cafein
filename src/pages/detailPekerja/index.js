@@ -58,8 +58,8 @@ const DetailProfile = () => {
                         <p>{othersProfile.description}</p>
                       </div>
                     </div>
-                    {role.toLowerCase().includes("company") && (
-                      <Link to="/hire">
+                    {role.toLowerCase().includes("recruiter") && (
+                      <Link to={`/hire/${othersProfile.iduser}`}>
                         <Button btn="btnHire" title="Hire"></Button>
                       </Link>
                     )}

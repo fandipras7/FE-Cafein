@@ -52,7 +52,7 @@ export const getCompanyById = (id, token) => (dispatch) => {
 export const editCompany = (formData) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-    const result = await axios.put(`${process.env.REACT_APP_URL_API}company/profile`, formData, {
+    const result = await axios.put(`${process.env.REACT_APP_URL_API}company/profile/`, formData, {
       "content-type": "multipart/form-data",
       headers: {
         Authorization: `Bearer ${token}`,
