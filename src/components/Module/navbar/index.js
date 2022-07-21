@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import logoNav from "./img/logoNav.png";
-import { NavLink, Link, Navigate, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import Button from "../../Base/Button/index";
 import styles from "./navbar.module.css";
 import ava from "./img/ava.png";
 import bell from "./img/bell.png";
 import mail from "./img/mail.png";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const Navbar = ({ className, ...props }) => {
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user);
   // console.log(user);
   // const isLogin = props.isLogin;
   // const isLogin = props.isLogin;
   const [isLogin, setLogin] = useState(false);
-  const [isRole, setRole] = useState(null)
+  const [isRole, setRole] = useState(null);
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -63,10 +63,8 @@ const Navbar = ({ className, ...props }) => {
                     <Button btn="btnAva" title={<img src={ava} alt="" />}></Button>
                     {/* </button> */}
                     <div className={styles.dropdown_content}>
-                      <Link to={isRole === 'Recruiter' ? "/companyprofile" : "/profilepekerja"}>Profile </Link>
-                      <p onClick={handleLogout}>
-                        Logout
-                      </p>
+                      <Link to={isRole === "Recruiter" ? "/companyprofile" : "/profilepekerja"}>Profile </Link>
+                      <p onClick={handleLogout}>Logout</p>
                     </div>
                   </div>
                 </li>

@@ -4,9 +4,9 @@ import styles from "./companyProfile.module.css";
 import ava from "./img/fotoprofile.png";
 import Footer from "../../../components/Module/footer/index";
 import { Button } from "../../../components/index";
-import { Link, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getCompanyById } from "../../../config/redux/actions/companyAction";
+import { useParams } from "react-router-dom";
+// import { useSelector, useDispatch } from "react-redux";
+// import { getCompanyById } from "../../../config/redux/actions/companyAction";
 import { getRecruiterProfile } from "../../../config/redux/actions/hireAction";
 
 const RecruiterProfile = () => {
@@ -14,7 +14,7 @@ const RecruiterProfile = () => {
   // const { companyId } = useSelector((state) => state.company);
   const { id } = useParams();
   const [recruiter, setRecruiter] = useState({});
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // console.log(companyId);
   console.log(recruiter);
 

@@ -107,7 +107,7 @@ export const addnewSkill = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     console.log(data);
-    const result = await axios.post(`${process.env.REACT_APP_URL_API}users/skill`, data, {
+    await axios.post(`${process.env.REACT_APP_URL_API}users/skill`, data, {
       "content-type": "multipart/form-data",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -136,7 +136,7 @@ export const addWorkExperience = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     console.log(data);
-    const result = await axios.post(`${process.env.REACT_APP_URL_API}users/workexp`, data, {
+    await axios.post(`${process.env.REACT_APP_URL_API}users/workexp`, data, {
       "content-type": "multipart/form-data",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -157,7 +157,7 @@ export const addPortofolio = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     console.log(data);
-    const result = await axios.post(`${process.env.REACT_APP_URL_API}users/portofolio`, data, {
+    await axios.post(`${process.env.REACT_APP_URL_API}users/portofolio`, data, {
       "content-type": "multipart/form-data",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -178,7 +178,7 @@ export const uploadAva = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
     console.log(data);
-    const result = await axios.post(`${process.env.REACT_APP_URL_API}users/upload`, data, {
+    await axios.post(`${process.env.REACT_APP_URL_API}users/upload`, data, {
       "content-type": "multipart/form-data",
       headers: {
         Authorization: `Bearer ${token}`,

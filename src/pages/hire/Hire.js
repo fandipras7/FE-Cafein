@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Module/navbar";
 import Footer from "../../components/Module/footer";
-import styles from "./hire.module.css";
+// import styles from "./hire.module.css";
 // import Card from "../../components/Base/CardAlter";
 import CardAlter from "../../components/Base/CardAlter";
-import ava from "../editProfilePekerja/img/ava.png";
+// import ava from "../editProfilePekerja/img/ava.png";
 import ButtonAlter from "../../components/Base/ButtonAlter";
 import Label from "../../components/Base/Label";
 import Input from "../../components/Base/Input";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../config/redux/actions/pekerjaAction";
 import { hireWorker } from "../../config/redux/actions/hireAction";

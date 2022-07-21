@@ -1,26 +1,26 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Module/navbar/index";
-import header from "./img/headerImage.png";
+// import header from "./img/headerImage.png";
 import styles from "./profile.module.css";
 import ava from "./img/fotoprofile.png";
 import Footer from "../../components/Module/footer/index";
 import Button from "../../components/Base/Button";
 import ButtonAlter from "../../components/Base/ButtonAlter/index";
 import bntg from "./img/banteng.png";
-import p1 from "./img/p1.png";
-import p2 from "./img/p2.png";
-import p3 from "./img/p3.png";
-import p4 from "./img/p4.png";
+// import p1 from "./img/p1.png";
+// import p2 from "./img/p2.png";
+// import p3 from "./img/p3.png";
+// import p4 from "./img/p4.png";
 import tokped from "./img/tokped.png";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDataById, getProfile, getProfileByID } from "../../config/redux/actions/pekerjaAction";
+import { getProfile } from "../../config/redux/actions/pekerjaAction";
 import { Link } from "react-router-dom";
 
 import Swal from "sweetalert2";
 
-import iconDelete from "../../assets/icons/x-circle.svg";
+// import iconDelete from "../../assets/icons/x-circle.svg";
 import { deletePorto } from "../../config/redux/actions/hireAction";
 
 const pekerjaProfile = () => {
@@ -28,7 +28,7 @@ const pekerjaProfile = () => {
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
   const { loginProfile } = useSelector((state) => state.pekerja);
-  const { id } = useParams();
+  // const { id } = useParams();
 
   const role = localStorage.getItem("Role");
 
@@ -101,14 +101,14 @@ const pekerjaProfile = () => {
                     <div className="row row-cols-4 gap-2">
                       {loginProfile.skill
                         ? loginProfile.skill.map((item) => (
-                          // <div className="col text-center ms-1 mb-2">
-                          //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
-                          // </div>
-                          // <div hidden=true>
+                            // <div className="col text-center ms-1 mb-2">
+                            //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
+                            // </div>
+                            // <div hidden=true>
 
-                          // </div>
-                          <p className={styles.skill + " text-center"}>{item.skillname}</p>
-                        ))
+                            // </div>
+                            <p className={styles.skill + " text-center"}>{item.skillname}</p>
+                          ))
                         : "Belum ada skill"}
                     </div>
                     <div className="table table-borderless">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./home.module.css";
-import { Input, Card, Button } from "../../../components/index";
+import { Input, Button } from "../../../components/index";
 import CardAlter from "../../../components/Base/CardAlter";
 import Navbar from "../../../components/Module/navbar";
 import ava from "../../editProfilePekerja/img/ava.png";

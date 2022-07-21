@@ -20,7 +20,7 @@ const History = () => {
 
   let newNotification = [];
   newNotification = history.filter((item) => {
-    return item.isread == "0";
+    return item.isread === "0";
   });
 
   const notify = () => toast(`Ada ${newNotification.length} tawaran pekerjaan baru`);
@@ -60,7 +60,7 @@ const History = () => {
                       <h5 className="card-title">{item.companyname}</h5>
                       <h6 className="card-subtitle mb-2 text-muted">{item.project}</h6>
                       <p className="card-text">{item.description}</p>
-                      {item.status == "1" ? (
+                      {item.status === "1" ? (
                         <>
                           <ButtonAlter>Interview has been Arranged, good luck!</ButtonAlter>
                           <ButtonAlter onClick={() => navigate(`/recruiterProfile/${item.idcompany}`)} className="ms-2">
@@ -103,7 +103,7 @@ const History = () => {
                       <h5 className="card-title">{item.workername}</h5>
                       <h6 className="card-subtitle mb-2 text-muted">{item.project}</h6>
                       <p className="card-text">{item.description}</p>
-                      {item.status == "1" ? (
+                      {item.status === "1" ? (
                         <>
                           <ButtonAlter>{item.fullname}your interview invitation accepted</ButtonAlter>
                         </>

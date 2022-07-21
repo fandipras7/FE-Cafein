@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from "react";
 import Navbar from "../../../components/Module/navbar/index";
 import styles from "./companyProfile.module.css";
 import ava from "./img/fotoprofile.png";
 import Footer from "../../../components/Module/footer/index";
 import { Button } from "../../../components/index";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import {getCompanyById} from '../../../config/redux/actions/companyAction'
-
+import { useSelector, useDispatch } from "react-redux";
+import { getCompanyById } from "../../../config/redux/actions/companyAction";
 
 const CompanyProfile = () => {
-  const [show, setShow] = useState(true);
-  const { companyId } = useSelector((state) => state.company)
+  // const [show, setShow] = useState(true);
+  const { companyId } = useSelector((state) => state.company);
   const dispatch = useDispatch();
   console.log(companyId);
 
@@ -20,11 +19,8 @@ const CompanyProfile = () => {
     const id = localStorage.getItem("id");
     const formData = new FormData();
     formData.append("id", id);
-    dispatch(getCompanyById(formData, token))
-   
-  }, [])
-
-  
+    dispatch(getCompanyById(formData, token));
+  }, []);
 
   return (
     <div>
@@ -40,7 +36,7 @@ const CompanyProfile = () => {
             <div className="row">
               <div className={"col position-relative bg-white"}>
                 <div className={styles.ava}>
-                  <img src={companyId.profileimage ?  companyId.profileimage : ava} alt="" />
+                  <img src={companyId.profileimage ? companyId.profileimage : ava} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">
@@ -87,7 +83,7 @@ const CompanyProfile = () => {
                           </div>
                         </td>
                         <td>
-                        <p className="mt-1">{companyId.companyphone}</p>
+                          <p className="mt-1">{companyId.companyphone}</p>
                         </td>
                       </tr>
                       <tr>

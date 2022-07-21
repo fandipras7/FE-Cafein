@@ -11,10 +11,10 @@ import ceklist_2 from "./img/skill/check.png";
 import avaSkill from "./img/skill/avaSkill.png";
 import kotak3 from "./img/skill/rectp.png";
 import kotak4 from "./img/skill/recto.png";
-import wadah from "./img/wadah.png";
-import ombak from "./img/ombak.png";
+// import wadah from "./img/wadah.png";
+// import ombak from "./img/ombak.png";
 import Footer from "../../components/Module/footer";
-import logo from "./img/logo.png";
+// import logo from "./img/logo.png";
 import { Link } from "react-router-dom";
 
 const landingPage = () => {

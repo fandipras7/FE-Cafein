@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import Card from "../../components/Base/card";
 import CardAlter from "../../components/Base/CardAlter";
 import Navbar from "../../components/Module/navbar";
@@ -9,13 +9,13 @@ import Label from "../../components/Base/Label";
 import Input from "../../components/Base/Input";
 import Footer from "../../components/Module/footer";
 import portoImg from "./img/backimg.PNG";
-import { addnewSkill, addPortofolio, addWorkExperience, editDataDiri, getDataById, getProfileByID, uploadAva } from "../../config/redux/actions/pekerjaAction";
+import { addnewSkill, addPortofolio, addWorkExperience, editDataDiri } from "../../config/redux/actions/pekerjaAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+// import Swal from "sweetalert2";
 
 const EditPekerja = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loginProfile } = useSelector((state) => state.pekerja);
@@ -136,7 +136,7 @@ const EditPekerja = () => {
                 <div className="row">
                   <div className="col-4">
                     <CardAlter
-                      img={avatar? avatar : ava}
+                      img={avatar ? avatar : ava}
                       onChange={(e) => {
                         uploadImage(e);
                       }}
@@ -144,7 +144,9 @@ const EditPekerja = () => {
                       titleImg="Edit"
                       width="100%"
                     >
-                      <label className={styles.edit} htmlFor="files">Edit photo</label>
+                      <label className={styles.edit} htmlFor="files">
+                        Edit photo
+                      </label>
                       <input
                         hidden="true"
                         type="file"

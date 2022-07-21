@@ -1,25 +1,25 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Module/navbar/index";
-import header from "./img/headerImage.png";
+// import header from "./img/headerImage.png";
 import styles from "./profile.module.css";
 import ava from "./img/fotoprofile.png";
 import Footer from "../../components/Module/footer/index";
 import Button from "../../components/Base/Button";
 import ButtonAlter from "../../components/Base/ButtonAlter/index";
 import bntg from "./img/banteng.png";
-import p1 from "./img/p1.png";
-import p2 from "./img/p2.png";
-import p3 from "./img/p3.png";
-import p4 from "./img/p4.png";
+// import p1 from "./img/p1.png";
+// import p2 from "./img/p2.png";
+// import p3 from "./img/p3.png";
+// import p4 from "./img/p4.png";
 import tokped from "./img/tokped.png";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDataById, getProfile, getProfileByID } from "../../config/redux/actions/pekerjaAction";
+import { getProfile } from "../../config/redux/actions/pekerjaAction";
 import { Link } from "react-router-dom";
 
 const DetailProfile = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const dispatch = useDispatch();
   const { othersProfile, isLoading } = useSelector((state) => state.pekerja);
