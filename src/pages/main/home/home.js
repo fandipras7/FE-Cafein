@@ -98,7 +98,7 @@ const Home = () => {
         <div className="row row-cols-4">
           {pekerja.map((item) => (
             <div className="col">
-              <CardAlter onClick={() => navigate(`/detailPekerja/${item.iduser}`)} img={ava}>
+              <CardAlter onClick={() => navigate(`/detailPekerja/${item.iduser}`)} img={item.profileimage || ava}>
                 <p className="fs-5">{item.fullname}</p>
                 <p className="fw-light">{item.jobdesk || "Jobseeker"}</p>
                 <td>
