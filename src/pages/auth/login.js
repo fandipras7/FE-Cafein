@@ -63,7 +63,7 @@ const Login = () => {
       <div className="main-left"></div>
       <div className="main-right">
         <p className="right-title">Halo, Pewpeople</p>
-        <p className="right-sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In euismod ipsum et dui rhoncus auctor.</p>
+        <p className="right-sub-title">Want to search for better opportunity in IT world? come and join us we provide many amazing career here.</p>
         <form>
           <p className="mt-5 text-muted p-0 m-0">Email</p>
           <Input css="inputAuth" type="email" placeholder="Masukkan alamat email" name="email" value={formLogin.email} onChange={(e) => handleChange(e)} />

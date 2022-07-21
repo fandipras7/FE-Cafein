@@ -68,11 +68,13 @@ export const getProfile = (id) => async (dispatch) => {
       },
     });
     const profile = result.data.data;
-    // console.log(profile);
+    const skill = profile.skill;
+
     if (!id) {
       dispatch({ type: "GET_PROFILE_LOGIN", payload: { profile } });
     } else {
       dispatch({ type: "GET_OTHER_PROFILE", payload: { profile } });
+      dispatch({ type: "GET_SKILL", payload: { skill } });
     }
     // navigate("/storeprofile/myproduct");
   } catch (error) {

@@ -16,18 +16,9 @@ const EditCompany = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const { companyId } = useSelector((state) => state.company)
-  console.log(companyId);
+  
   //  console.log(companyId.company);
   const [dataCompany, setDataCompany] = useState({
-    // company: "",
-    // jobfield: "",
-    // address: "",
-    // description: "",
-    // email: "", 
-    // instagram: "",
-    // phone: "",
-    // linkedin: "",
-
     company: companyId.companyname,
     jobfield: companyId.jobfield,
     address: companyId.companyaddress,
@@ -36,6 +27,7 @@ const EditCompany = () => {
     instagram: companyId.instagram,
     phone: companyId.companyphone,
     linkedin: companyId.linkedin,
+    profileimage: companyId.profileimage
 
   });
 
@@ -51,9 +43,10 @@ const EditCompany = () => {
     formData.append("instagram", dataCompany.instagram);
     formData.append("phone", dataCompany.phone);
     formData.append("linkedin", dataCompany.linkedin);
+    formData.append("profileimage", dataCompany.profileimage);
     dispatch(editCompany(formData)).then(()=>navigate("/companyprofile"))
   };
-
+  console.log(dataCompany.profileimage);
   const handleChange = (e) => {
     const newdata = { ...dataCompany }
     newdata[e.target.name] = e.target.value
@@ -63,10 +56,9 @@ const EditCompany = () => {
 
   const uploadImage = (e) => {
     const file = e.target.files[0];
-    // setPhoto(file);
     setDataCompany({
       ...dataCompany,
-      profileimage: URL.createObjectURL(file),
+      profileimage: file,
     });
   };
 
@@ -77,7 +69,7 @@ const EditCompany = () => {
     formData.append("id", id);
     dispatch(getCompanyById(formData, token))
     .then((res)=>{
-      const {companyname, jobfield, companyaddress, description, emailcompany, instagram, companyphone, linkedin} = res.data.result
+      const {companyname, jobfield, companyaddress, description, emailcompany, instagram, companyphone, linkedin, profileimage} = res.data.result
       setDataCompany({
         company: companyname,
         jobfield: jobfield,
@@ -87,6 +79,7 @@ const EditCompany = () => {
         instagram: instagram,
         phone: companyphone,
         linkedin: linkedin,
+        profileimage: profileimage
       })
     })
    
@@ -108,7 +101,7 @@ const EditCompany = () => {
                 <div className="row">
                   <div className="col-4 mt-5">
                     <CardAlter
-                      img={''}
+                      img={companyId.profileimage? companyId.profileimage : '' }
                       onChange={(e) => {
                         uploadImage(e);
                       }}

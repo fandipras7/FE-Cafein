@@ -82,7 +82,7 @@ function App() {
         />
         <Route
           exact
-          path="/hire"
+          path="/hire/:id"
           element={
             <PrivateRoot>
               <Hire />
