@@ -13,36 +13,36 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../config/redux/actions/pekerjaAction";
 import { hireWorker } from "../../config/redux/actions/hireAction";
+// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 const Hire = () => {
   const dispatch = useDispatch();
   const { othersProfile, skill } = useSelector((state) => state.pekerja);
   const { id } = useParams();
   const [formHire, setFormHire] = useState({
-    name:"",
-    email:"",
-    phonenumber:"",
-    description:"",
-    project:""
-  })
+    name: "",
+    email: "",
+    phonenumber: "",
+    description: "",
+    project: "",
+  });
 
   const handleChange = (e) => {
     setFormHire({
       ...formHire,
-      [e.target.name]: e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  }
-
-  const handleHire = (e) => {
-    e.preventDefault()
-    dispatch(hireWorker(formHire, id))
-  }
+  const handleHire = (e, Swal) => {
+    e.preventDefault();
+    dispatch(hireWorker(formHire, id, Swal));
+  };
 
   // console.log(skill);
   useEffect(() => {
-    dispatch(getProfile(id))
-    
+    dispatch(getProfile(id));
   }, []);
   return (
     <div>
@@ -54,13 +54,13 @@ const Hire = () => {
               <div className="col-4">
                 <CardAlter img={othersProfile.profileimage} textPosition="text-start" titleImg="Edit" width="100%">
                   <p className="fs-5 fw-bold">{othersProfile.fullname}</p>
-                  <p>{othersProfile.jobdesk=== null ? othersProfile.jobdesk : "Developer"}</p>
+                  <p>{othersProfile.jobdesk === null ? othersProfile.jobdesk : "Developer"}</p>
                   <p className="fw-light">{othersProfile.address}</p>
                   <p>{othersProfile.description}</p>
-                  <h5>Skill</h5>                
+                  <h5>Skill</h5>
                   {skill.length > 0 &&
-                    skill.map((item,index) => {
-                        return <ButtonAlter className="me-2 mb-2" backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none" key={index}></ButtonAlter>;                     
+                    skill.map((item, index) => {
+                      return <ButtonAlter className="me-2 mb-2" backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none" key={index}></ButtonAlter>;
                     })}
                 </CardAlter>
               </div>
@@ -86,7 +86,7 @@ const Hire = () => {
                   <Label className="mt-2" title="Deskripsi"></Label>
                   <textarea style={{ height: "150px" }} id="" className="form-control" name="description" value={formHire.description} onChange={(e) => handleChange(e)}></textarea>
                 </div>
-                <ButtonAlter color="white" border="none" backgroundColor="#FBB017" className="p-2 w-100 mt-5" onClick={(e) => handleHire(e)}>
+                <ButtonAlter color="white" border="none" backgroundColor="#FBB017" className="p-2 w-100 mt-5" onClick={(e) => handleHire(e, Swal)}>
                   Hire
                 </ButtonAlter>
               </div>

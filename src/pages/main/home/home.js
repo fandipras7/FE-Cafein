@@ -95,7 +95,7 @@ const Home = () => {
           </div>
         </div>
         {/* <Card /> */}
-        <div className="row row-cols-4">
+        <div className="row row-cols-1 row-cols-lg-4">
           {pekerja.map((item) => (
             <div className="col">
               <CardAlter onClick={() => navigate(`/detailPekerja/${item.iduser}`)} img={item.profileimage || ava}>
@@ -114,13 +114,13 @@ const Home = () => {
                     }
                     return null;
                   })} */}
-                  {item.skill.length > 0 &&
+                  {(item.skill.length > 0 &&
                     item.skill.map((item, i) => {
                       if (i <= 1) {
                         return <ButtonAlter className="me-2" backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item} border="none"></ButtonAlter>;
                       }
                       return null;
-                    })}
+                    })) || <ButtonAlter className="me-2 p-1" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="No skills have been input yet" border="none"></ButtonAlter>}
                   <p className="fw-bold">{item.skill.length > 2 ? item.skill.length - 2 + "+" : ""}</p>
                 </div>
               </CardAlter>

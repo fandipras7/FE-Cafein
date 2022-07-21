@@ -88,7 +88,7 @@ export const getRecruiterProfile = async (setData, id) => {
     console.log(error);
   }
 };
-export const hireWorker = (data, id) => () => {
+export const hireWorker = (data, id, Swal) => () => {
   const token = localStorage.getItem("token");
   axios
     .post(`${process.env.REACT_APP_URL_API}hire/${id}`, data, {
@@ -97,7 +97,24 @@ export const hireWorker = (data, id) => () => {
       },
     })
     .then((res) => {
+      Swal.fire("Delivered!", "Your Invitation has been delivered.", "success");
       console.log("post success", res);
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
+};
+
+export const deletePorto = (name, Swal) => {
+  const token = localStorage.getItem("token");
+  axios
+    .delete(`${process.env.REACT_APP_URL_API}users/deleteporto/${name}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      Swal.fire("Deleted!", "Your portfolio has been deleted.", "success");
     })
     .catch((err) => {
       console.log("err", err);

@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import iconDelete from "../../assets/icons/x-circle.svg";
+import { deletePorto } from "../../config/redux/actions/hireAction";
 
 const pekerjaProfile = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const pekerjaProfile = () => {
 
   const role = localStorage.getItem("Role");
 
-  const onDeleteMessage = (items) => {
+  const onDeleteMessage = (name) => {
     // console.log(items);
     Swal.fire({
       title: "Are you sure to delete this message?",
@@ -41,8 +42,8 @@ const pekerjaProfile = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes",
-    }).then((result) => {
-      Swal.fire("Deleted!", "Your message has been deleted.", "success");
+    }).then(() => {
+      deletePorto(name, Swal);
     });
   };
 
@@ -78,7 +79,7 @@ const pekerjaProfile = () => {
                   <img className={`${styles.profileImage} img-fluid`} src={loginProfile.profileimage ? loginProfile.profileimage : ava} alt="" />
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
-                  <div className="col">
+                  <div className="col mt-5">
                     <h5>{loginProfile.fullname}</h5>
                     <p>{loginProfile.jobdesk}</p>
                     <p>{loginProfile.domisili}</p>
@@ -100,14 +101,14 @@ const pekerjaProfile = () => {
                     <div className="row row-cols-4 gap-2">
                       {loginProfile.skill
                         ? loginProfile.skill.map((item) => (
-                            // <div className="col text-center ms-1 mb-2">
-                            //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
-                            // </div>
-                            // <div hidden=true>
+                          // <div className="col text-center ms-1 mb-2">
+                          //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
+                          // </div>
+                          // <div hidden=true>
 
-                            // </div>
-                            <p className={styles.skill + " text-center"}>{item.skillname}</p>
-                          ))
+                          // </div>
+                          <p className={styles.skill + " text-center"}>{item.skillname}</p>
+                        ))
                         : "Belum ada skill"}
                     </div>
                     <div className="table table-borderless">
@@ -186,7 +187,12 @@ const pekerjaProfile = () => {
                         {loginProfile.port &&
                           loginProfile.port.map((item) => (
                             <div className={`col ${styles.porto}`}>
-                              <span onClick={onDeleteMessage} className={styles.delete}>
+                              <span
+                                onClick={() => {
+                                  onDeleteMessage(item.aplicationname);
+                                }}
+                                className={styles.delete}
+                              >
                                 Delete
                               </span>
                               <img className={"img-fluid " + styles.shadow} src={item.image} alt="" />

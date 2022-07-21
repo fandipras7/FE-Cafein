@@ -5,7 +5,7 @@ const CardAlter = ({ img, titleImg, width, children, ...props }) => {
   return (
     <div onClick={props.onClick} className="card mt-4" style={{ width: width }}>
       <div className={"text-center"}>
-        <img src={img} className={"img-fluid text-center " + styles.fp} alt="" />
+        {img && <div className={`${styles.kotak} mt-2`}><img src={img} className={"img-fluid text-center " + styles.fp} alt="" /></div>}
         {/* <p className="text-center">{titleImg}</p> */}
       </div>
       <div className={`card-body ${props.textPosition}`}>{children}</div>
