@@ -49,7 +49,9 @@ const Navbar = ({ className, ...props }) => {
             {isLogin ? (
               <ul>
                 <li className=" mt-1">
-                  <Button btn="btnAva" title={<img src={bell} alt="" />}></Button>
+                  <Link to="/history">
+                    <Button btn="btnAva" title={<img src={bell} alt="" />}></Button>
+                  </Link>
                 </li>
                 <li className="ms-2 mt-1">
                   <Button btn="btnAva" title={<img src={mail} alt="" />}></Button>
@@ -61,8 +63,8 @@ const Navbar = ({ className, ...props }) => {
                     <Button btn="btnAva" title={<img src={ava} alt="" />}></Button>
                     {/* </button> */}
                     <div className={styles.dropdown_content}>
-                    <Link to={isRole === 'Recruiter' ? "/companyprofile"   : "/profilepekerja" }>Profile </Link> 
-                      <p  onClick={handleLogout}>
+                      <Link to={isRole === 'Recruiter' ? "/companyprofile" : "/profilepekerja"}>Profile </Link>
+                      <p onClick={handleLogout}>
                         Logout
                       </p>
                     </div>
