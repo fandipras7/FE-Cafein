@@ -24,7 +24,7 @@ const DetailProfile = () => {
   const dispatch = useDispatch();
   const { othersProfile, isLoading } = useSelector((state) => state.pekerja);
   const { id } = useParams();
-  const role = localStorage.getItem('Role')
+  const role = localStorage.getItem("Role");
 
   console.log(othersProfile);
   useEffect(() => {
@@ -35,57 +35,61 @@ const DetailProfile = () => {
     <div>
       <Navbar />
 
-      {isLoading ? <div className="vh-100 text-align-center"><h3>Geting Profile...</h3></div> : <main>
-        <div className="container-fluid bg-light">
-          <div className="container position-relative mt-5">
-            <div className="row position-relative">
-              <div className={"col " + styles.bg_image}>
+      {isLoading ? (
+        <div className="vh-100 text-align-center">
+          <h3>Geting Profile...</h3>
+        </div>
+      ) : (
+        <main>
+          <div className="container-fluid bg-light">
+            <div className="container position-relative mt-5">
+              <div className="row position-relative">
+                <div className={"col " + styles.bg_image}></div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col position-relative px-5 bg-white">
-                <div className={`${styles.frame}`}>
-                  <img className={`${styles.profileImage} img-fluid`} src={othersProfile.profileimage ? othersProfile.profileimage : ava} alt="" />
-                </div>
-                <div className={"row flex-column " + styles.dt_profile}>
-                  <div className="col">
-                    <h5>{othersProfile.fullname}</h5>
-                    <p>{othersProfile.jobdesk}</p>
-                    <p>{othersProfile.domisili}</p>
-                    <p>Freelencer</p>
-                    <div className="row">
-                      <div className="col-6">
-                        <p>{othersProfile.description}</p>
-                      </div>
-                    </div>
-                    {role.toLowerCase().includes("recruiter") && (
-                      <Link to={`/hire/${othersProfile.iduser}`}>
-                        <Button btn="btnHire" title="Hire"></Button>
-                      </Link>
-                    )}
+              <div className="row">
+                <div className="col position-relative px-5 bg-white">
+                  <div className={`${styles.frame}`}>
+                    <img className={`${styles.profileImage} img-fluid`} src={othersProfile.profileimage ? othersProfile.profileimage : ava} alt="" />
                   </div>
-                  <div className="col-4 mt-5">
-                    <h5>Skill</h5>
-                    <div className="row row-cols-4 gap-2">
-                      {/* {othersProfile.skill[1]} */}
-
-                      {othersProfile.skill
-                        ? othersProfile.skill.map((item) => (
-                          // <div className="col text-center ms-1 mb-2">
-                          //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
-                          // </div>
-                          <p className={styles.skill + " text-center"}>{item.skillname}</p>
-                        ))
-                        : "Belum ada skill"}
+                  <div className={"row flex-column " + styles.dt_profile}>
+                    <div className="col">
+                      <h5>{othersProfile.fullname}</h5>
+                      <p>{othersProfile.jobdesk}</p>
+                      <p>{othersProfile.domisili}</p>
+                      <p>Freelencer</p>
+                      <div className="row">
+                        <div className="col-6">
+                          <p>{othersProfile.description}</p>
+                        </div>
+                      </div>
+                      {role.toLowerCase().includes("recruiter") && (
+                        <Link to="/hire">
+                          <Button btn="btnHire" title="Hire"></Button>
+                        </Link>
+                      )}
                     </div>
-                    {/* <td>
+                    <div className="col-4 mt-5">
+                      <h5>Skill</h5>
+                      <div className="row row-cols-4 gap-2">
+                        {/* {othersProfile.skill[1]} */}
+
+                        {othersProfile.skill
+                          ? othersProfile.skill.map((item) => (
+                              // <div className="col text-center ms-1 mb-2">
+                              //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
+                              // </div>
+                              <p className={styles.skill + " text-center"}>{item.skillname}</p>
+                            ))
+                          : "Belum ada skill"}
+                      </div>
+                      {/* <td>
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Laravel" border="none"></ButtonAlter>
                       </td>
                       <td>
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Golang" border="none"></ButtonAlter>
                       </td> */}
 
-                    {/* <div className="table table-borderless">
+                      {/* <div className="table table-borderless">
                       <td>
                         <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Javascript" border="none"></ButtonAlter>
                       </td>
@@ -107,107 +111,107 @@ const DetailProfile = () => {
                         <ButtonAlter className="ms-3" backgroundColor="#FBB01799" color="white" borderRadius="4px" title="Swift" border="none"></ButtonAlter>
                       </td>
                     </div> */}
-                    <div className="table table-borderless">
-                      <tr>
-                        <td>
-                          <div className="mt-1">
-                            <i class="bi bi-envelope"></i>
-                          </div>
-                        </td>
-                        <td>
-                          <p className="mt-1">{othersProfile.email}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="mt-1">
-                            <i class="bi bi-instagram"></i>
-                          </div>
-                        </td>
-                        <td>
-                          <p className="mt-1">{`@${othersProfile.fullname}`}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div className="mt-1">
-                            <i class="bi bi-github"></i>
-                          </div>
-                        </td>
-                        <td>
-                          <p className="mt-1">{`@${othersProfile.fullname}`}</p>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <img className="mt-1" src={bntg} alt="" />
-                        </td>
-                        <td>
-                          <p className="mt-1">{`@${othersProfile.fullname}`}</p>
-                        </td>
-                      </tr>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <ButtonAlter
-                      onClick={() => {
-                        setShow(true);
-                        let porto = document.getElementById("porto");
-                        let work = document.getElementById("work");
-                        work.style.border = "none";
-                        porto.style.borderBottom = "1px solid black";
-                      }}
-                      border="none"
-                      backgroundColor="white"
-                    >
-                      <p id="porto" className="fs-5">
-                        Portofolio
-                      </p>
-                    </ButtonAlter>
-                    <ButtonAlter
-                      onClick={() => {
-                        setShow(false);
-                        let porto = document.getElementById("porto");
-                        let work = document.getElementById("work");
-                        work.style.borderBottom = "1px solid black";
-                        porto.style.border = "none";
-                      }}
-                      id="work"
-                      border="none"
-                      backgroundColor="white"
-                    >
-                      <p className="fs-5">Penglaman Kerja</p>
-                    </ButtonAlter>
-                    {show ? (
-                      <div className="row row-cols-4 mt-5">
-                        {othersProfile.port &&
-                          othersProfile.port.map((item) => (
-                            <div className={`col`}>
-                              <img className={"img-fluid " + styles.shadow} src={item.image} alt="" />
-                              <p className={styles.portfolioName}>{item.aplicationname}</p>
+                      <div className="table table-borderless">
+                        <tr>
+                          <td>
+                            <div className="mt-1">
+                              <i class="bi bi-envelope"></i>
                             </div>
-                          ))}
+                          </td>
+                          <td>
+                            <p className="mt-1">{othersProfile.email}</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div className="mt-1">
+                              <i class="bi bi-instagram"></i>
+                            </div>
+                          </td>
+                          <td>
+                            <p className="mt-1">{`@${othersProfile.fullname}`}</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div className="mt-1">
+                              <i class="bi bi-github"></i>
+                            </div>
+                          </td>
+                          <td>
+                            <p className="mt-1">{`@${othersProfile.fullname}`}</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img className="mt-1" src={bntg} alt="" />
+                          </td>
+                          <td>
+                            <p className="mt-1">{`@${othersProfile.fullname}`}</p>
+                          </td>
+                        </tr>
                       </div>
-                    ) : (
-                      <div className="row mt-5">
-                        <div className="col">
-                          {othersProfile.work &&
-                            othersProfile.work.map((item) => (
-                              <div className="table table-borderless">
-                                <td className="col-1">
-                                  <div>
-                                    <img src={tokped} alt="" />
-                                  </div>
-                                </td>
-                                <td>
-                                  <p className="fw-bold">{item.position}</p>
-                                  <span>{item.companyname}</span>
-                                  <p>{item.date}</p>
-                                  <p>{item.description}</p>
-                                </td>
+                    </div>
+                    <div className="col">
+                      <ButtonAlter
+                        onClick={() => {
+                          setShow(true);
+                          let porto = document.getElementById("porto");
+                          let work = document.getElementById("work");
+                          work.style.border = "none";
+                          porto.style.borderBottom = "1px solid black";
+                        }}
+                        border="none"
+                        backgroundColor="white"
+                      >
+                        <p id="porto" className="fs-5">
+                          Portofolio
+                        </p>
+                      </ButtonAlter>
+                      <ButtonAlter
+                        onClick={() => {
+                          setShow(false);
+                          let porto = document.getElementById("porto");
+                          let work = document.getElementById("work");
+                          work.style.borderBottom = "1px solid black";
+                          porto.style.border = "none";
+                        }}
+                        id="work"
+                        border="none"
+                        backgroundColor="white"
+                      >
+                        <p className="fs-5">Penglaman Kerja</p>
+                      </ButtonAlter>
+                      {show ? (
+                        <div className="row row-cols-4 mt-5">
+                          {othersProfile.port &&
+                            othersProfile.port.map((item) => (
+                              <div className={`col`}>
+                                <img className={"img-fluid " + styles.shadow} src={item.image} alt="" />
+                                <p className={styles.portfolioName}>{item.aplicationname}</p>
                               </div>
                             ))}
-                          {/* <div className="table table-borderless">
+                        </div>
+                      ) : (
+                        <div className="row mt-5">
+                          <div className="col">
+                            {othersProfile.work &&
+                              othersProfile.work.map((item) => (
+                                <div className="table table-borderless">
+                                  <td className="col-1">
+                                    <div>
+                                      <img src={tokped} alt="" />
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <p className="fw-bold">{item.position}</p>
+                                    <span>{item.companyname}</span>
+                                    <p>{item.date}</p>
+                                    <p>{item.description}</p>
+                                  </td>
+                                </div>
+                              ))}
+                            {/* <div className="table table-borderless">
                             <td className="col-1">
                               <div>
                                 <img src={tokped} alt="" />
@@ -220,16 +224,17 @@ const DetailProfile = () => {
                               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
                             </td>
                           </div> */}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>}
+        </main>
+      )}
       <Footer className="px-5 py-2"></Footer>
     </div>
   );

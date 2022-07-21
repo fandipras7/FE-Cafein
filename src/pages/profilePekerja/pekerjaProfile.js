@@ -69,7 +69,7 @@ const pekerjaProfile = () => {
                         <p>{loginProfile.description}</p>
                       </div>
                     </div>
-                    {role.toLowerCase().includes("company") && (
+                    {role.toLowerCase().includes("Recruiter") && (
                       <Link to="/hire">
                         <Button btn="btnHire" title="Hire"></Button>
                       </Link>
