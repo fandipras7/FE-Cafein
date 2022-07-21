@@ -43,3 +43,17 @@
   font-weight: 600;
   padding: 2px;
 }
+
+.porto {
+  position: relative;
+}
+
+.delete {
+  position: absolute;
+  right: 12px;
+  top: -27px;
+  background-color: #fbb01799;
+  color: gray;
+  border-radius: 5px;
+  padding: 2px;
+}

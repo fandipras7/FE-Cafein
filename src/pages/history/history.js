@@ -5,15 +5,26 @@ import styles from "./history.module.css";
 // import CardAlter from '../../components/Base/CardAlter/index'
 import ButtonAlter from "../../components/Base/ButtonAlter";
 import { useEffect } from "react";
-import { acceptInvitation, getHistoryHire, historyRecruiter } from "../../config/redux/actions/hireAction";
+import { acceptInvitation, getHistoryHire, historyRecruiter, setisRead } from "../../config/redux/actions/hireAction";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const History = () => {
     const [history, setHistory] = useState([]);
     const role = localStorage.getItem("Role");
     const navigate = useNavigate();
     console.log(role);
+
+    let newNotification = []
+    newNotification = history.filter((item) => {
+        return item.isread == '0'
+    })
+
+    const notify = () => toast(`Ada ${newNotification.length} tawaran pekerjaan baru`);
+
 
     if (role.includes("Worker")) {
         console.log("apakah ini jalan 1");
@@ -27,12 +38,19 @@ const History = () => {
         }, []);
     }
     console.log(history);
+
+    console.log(newNotification);
     return (
         <div>
             <Navbar />
             <div className=" container">
                 <div className="row justify-content-center">
+
                     <div className="col-8 mt-5">
+                        {newNotification.length > 0 && <div className="notification">
+                            <div hidden>{notify()}</div>
+                            <ToastContainer></ToastContainer>
+                        </div>}
                         <h3 className="text-center">Interview History</h3>
                         {history &&
                             history.map((item, index) =>
@@ -55,9 +73,17 @@ const History = () => {
                                                         <ButtonAlter
                                                             onClick={() => {
                                                                 const data = {
-                                                                    status: "1",
+                                                                    "status": "1",
+                                                                    "id": `${item.id}`
+
+                                                                };
+                                                                const data2 = {
+                                                                    "isread": "1",
+                                                                    "id": `${item.id}`
+
                                                                 };
                                                                 acceptInvitation(data);
+                                                                setisRead(data2)
                                                             }}
                                                             className="me-2"
                                                         >

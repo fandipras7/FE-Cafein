@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataById, getProfile, getProfileByID } from "../../config/redux/actions/pekerjaAction";
 import { Link } from "react-router-dom";
 
+
 import iconDelete from "../../assets/icons/x-circle.svg";
 
 const pekerjaProfile = () => {
@@ -28,6 +29,26 @@ const pekerjaProfile = () => {
   const { id } = useParams();
 
   const role = localStorage.getItem("Role");
+
+  const onDeleteMessage = (items) => {
+    // console.log(items);
+    // Swal.fire({
+    //   title: "Are you sure to delete this portofolio?",
+    //   text: "You won't be able to revert this!",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Yes",
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     //  masukan endpoin delete skill
+    //     Swal.fire("Deleted!", "Your message has been deleted.", "success");
+    //   }
+    // });
+  };
+
+
 
   // console.log(loginProfile);
   console.log(role);
@@ -168,7 +189,8 @@ const pekerjaProfile = () => {
                       <div className="row row-cols-4 mt-5">
                         {loginProfile.port &&
                           loginProfile.port.map((item) => (
-                            <div className={`col`}>
+                            <div className={`col ${styles.porto}`}>
+                              <span className={styles.delete}>Delete</span>
                               <img className={"img-fluid " + styles.shadow} src={item.image} alt="" />
                               <p className={styles.portfolioName}>{item.aplicationname}</p>
                             </div>

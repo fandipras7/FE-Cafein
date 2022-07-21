@@ -43,11 +43,22 @@ export const historyRecruiter = async (setData) => {
 export const acceptInvitation = async (status) => {
   try {
     const token = localStorage.getItem("token");
-    const result = await axios({
-      method: "PUT",
-      baseURL: process.env.REACT_APP_URL_API,
-      url: `/users/hire`,
-      data: status,
+    const result = await axios.put(`${process.env.REACT_APP_URL_API}users/hire`, status, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setisRead = async (read) => {
+  try {
+    const token = localStorage.getItem("token");
+    const result = await axios.put(`${process.env.REACT_APP_URL_API}users/hirenotif`, read, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
