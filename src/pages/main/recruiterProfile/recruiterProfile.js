@@ -10,16 +10,16 @@ import { getCompanyById } from "../../../config/redux/actions/companyAction";
 import { getRecruiterProfile } from "../../../config/redux/actions/hireAction";
 
 const RecruiterProfile = () => {
-  const [show, setShow] = useState(true);
+  // const [show, setShow] = useState(true);
   // const { companyId } = useSelector((state) => state.company);
   const { id } = useParams();
-  const [recruiter, setRecruiter] = useState();
+  const [recruiter, setRecruiter] = useState({});
   const dispatch = useDispatch();
   // console.log(companyId);
+  console.log(recruiter);
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // dispatch(getCompanyById());
+    console.log("cek apakah jalan");
     getRecruiterProfile(setRecruiter, id);
   }, []);
 
@@ -30,9 +30,7 @@ const RecruiterProfile = () => {
         <div className="container-fluid bg-light">
           <div className="container position-relative mt-5">
             <div className="row position-relative">
-              <div className={"col " + styles.bg_image}>
-                <button className={styles.btnInput}>Ubah latar</button>
-              </div>
+              <div className={"col " + styles.bg_image}>{/* <button className={styles.btnInput}>Ubah latar</button> */}</div>
             </div>
             <div className="row">
               <div className={"col position-relative bg-white"}>
@@ -41,17 +39,18 @@ const RecruiterProfile = () => {
                 </div>
                 <div className={"row flex-column " + styles.dt_profile}>
                   <div className="col">
-                    <h5>{recruiter.companyname}</h5>
-                    <p>{recruiter.jobfield}</p>
-                    <p>{recruiter.companyaddress}</p>
+                    <h5>{recruiter && recruiter.name}</h5>
+                    <p>{recruiter && recruiter.jobfield}</p>
+                    <p>{recruiter && recruiter.companyaddress}</p>
                     <div className="row d-flex justify-content-center">
                       <div className="col-6">
-                        <p>{recruiter.description}</p>
+                        <p>{recruiter && recruiter.description}</p>
                       </div>
                     </div>
-                    <Link to="/editCompany">
+                    <Button btn="btnHire" title={recruiter.companyname}></Button>
+                    {/* <Link to="/editCompany">
                       <Button btn="btnHire" title="Edit profile"></Button>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
                 <div className={styles.contact}>
@@ -64,7 +63,7 @@ const RecruiterProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">{recruiter.emailcompany}</p>
+                          <p className="mt-1">{recruiter && recruiter.emailcompany}</p>
                         </td>
                       </tr>
                       <tr>
@@ -74,7 +73,7 @@ const RecruiterProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">{recruiter.instagram}</p>
+                          <p className="mt-1">{recruiter && recruiter.instagram}</p>
                         </td>
                       </tr>
                       <tr>
@@ -84,7 +83,7 @@ const RecruiterProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">{recruiter.companyphone}</p>
+                          <p className="mt-1">{recruiter && recruiter.companyphone}</p>
                         </td>
                       </tr>
                       <tr>
@@ -94,7 +93,7 @@ const RecruiterProfile = () => {
                           </div>
                         </td>
                         <td>
-                          <p className="mt-1">{recruiter.linkedin}</p>
+                          <p className="mt-1">{recruiter && recruiter.linkedin}</p>
                         </td>
                       </tr>
                     </div>

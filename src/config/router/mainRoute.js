@@ -14,7 +14,7 @@ import CompanyProfile from "../../pages/main/companyProfile/companyProfile";
 import EditCompany from "../../pages/main/editCompanyProfile/editCompany";
 import PrivateRoot from "../../components/Base/privateroot";
 import History from "../../pages/history/history";
-import RecruiterProfile from "../../pages/main/recruiterProfile/companyProfile";
+import RecruiterProfile from "../../pages/main/recruiterProfile/recruiterProfile";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/registerCompany" element={<RegisterCompany />} />
         <Route exact path="/" element={<Landingpage />} />
         <Route exact path="/History" element={<History />} />
-        <Route exact path="/recruiterProfile" element={<RecruiterProfile />} />
+        <Route exact path="/recruiterProfile/:id" element={<RecruiterProfile />} />
         <Route
           exact
           path="/profilePekerja"

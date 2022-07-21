@@ -18,6 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataById, getProfile, getProfileByID } from "../../config/redux/actions/pekerjaAction";
 import { Link } from "react-router-dom";
 
+import iconDelete from "../../assets/icons/x-circle.svg";
+
 const pekerjaProfile = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
@@ -81,11 +83,14 @@ const pekerjaProfile = () => {
                     <div className="row row-cols-4 gap-2">
                       {loginProfile.skill
                         ? loginProfile.skill.map((item) => (
-                            // <div className="col text-center ms-1 mb-2">
-                            //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
-                            // </div>
-                            <p className={styles.skill + " text-center"}>{item.skillname}</p>
-                          ))
+                          // <div className="col text-center ms-1 mb-2">
+                          //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
+                          // </div>
+                          // <div hidden=true>
+
+                          // </div>
+                          <p className={styles.skill + " text-center"}>{item.skillname}</p>
+                        ))
                         : "Belum ada skill"}
                     </div>
                     <div className="table table-borderless">

@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export const getWorkers =
-  ({ page, limit, keyword }) =>
+  ({ page, limit, keyword, sort }) =>
   async (dispatch) => {
     try {
       console.log(keyword);
@@ -10,7 +10,7 @@ export const getWorkers =
       const result = await axios({
         method: "GET",
         baseURL: process.env.REACT_APP_URL_API,
-        url: `/home?page=${page}&limit=${limit}${keyword ? "&search=" + keyword : ""}`,
+        url: `/home?page=${page}&limit=${limit}${keyword ? "&search=" + keyword : ""}${sort && `&sort=${sort}`}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -59,7 +59,7 @@ export const getDataById = (data, setData, id) => async (dispatch) => {
 
 export const getProfile = (id) => async (dispatch) => {
   try {
-    dispatch({ type: "GET_PROFILE_PENDING"});
+    dispatch({ type: "GET_PROFILE_PENDING" });
     const token = localStorage.getItem("token");
     const result = await axios.get(`${process.env.REACT_APP_URL_API}users/profile${id ? "/" + id : "/"}`, {
       // "content-type": "multipart/form-data",
@@ -69,7 +69,7 @@ export const getProfile = (id) => async (dispatch) => {
     });
     const profile = result.data.data;
     // console.log(profile);
-    if(!id){
+    if (!id) {
       dispatch({ type: "GET_PROFILE_LOGIN", payload: { profile } });
     } else {
       dispatch({ type: "GET_OTHER_PROFILE", payload: { profile } });
@@ -115,18 +115,18 @@ export const addnewSkill = (data) => async (dispatch) => {
     dispatch({ type: "ADD_NEW_SKILL" /*payload: { profile } */ });
     // navigate("/storeprofile/myproduct");
     Swal.fire({
-      icon: 'success',
+      icon: "success",
       title: "Add Skill Success",
-      text: ""
-    })
+      text: "",
+    });
     // console.log(data);
   } catch (error) {
     console.log(error);
     Swal.fire({
-      icon: 'success',
+      icon: "success",
       title: "Failed to Add Skill",
-      text: ""
-    })
+      text: "",
+    });
   }
 };
 
