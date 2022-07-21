@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDataById, getProfile, getProfileByID } from "../../config/redux/actions/pekerjaAction";
 import { Link } from "react-router-dom";
 
+import Swal from "sweetalert2";
 
 import iconDelete from "../../assets/icons/x-circle.svg";
 
@@ -32,23 +33,18 @@ const pekerjaProfile = () => {
 
   const onDeleteMessage = (items) => {
     // console.log(items);
-    // Swal.fire({
-    //   title: "Are you sure to delete this portofolio?",
-    //   text: "You won't be able to revert this!",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     //  masukan endpoin delete skill
-    //     Swal.fire("Deleted!", "Your message has been deleted.", "success");
-    //   }
-    // });
+    Swal.fire({
+      title: "Are you sure to delete this message?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      Swal.fire("Deleted!", "Your message has been deleted.", "success");
+    });
   };
-
-
 
   // console.log(loginProfile);
   console.log(role);
@@ -104,14 +100,14 @@ const pekerjaProfile = () => {
                     <div className="row row-cols-4 gap-2">
                       {loginProfile.skill
                         ? loginProfile.skill.map((item) => (
-                          // <div className="col text-center ms-1 mb-2">
-                          //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
-                          // </div>
-                          // <div hidden=true>
+                            // <div className="col text-center ms-1 mb-2">
+                            //   <ButtonAlter backgroundColor="#FBB01799" color="white" borderRadius="4px" title={item.skillname} border="none"></ButtonAlter>
+                            // </div>
+                            // <div hidden=true>
 
-                          // </div>
-                          <p className={styles.skill + " text-center"}>{item.skillname}</p>
-                        ))
+                            // </div>
+                            <p className={styles.skill + " text-center"}>{item.skillname}</p>
+                          ))
                         : "Belum ada skill"}
                     </div>
                     <div className="table table-borderless">
@@ -190,7 +186,9 @@ const pekerjaProfile = () => {
                         {loginProfile.port &&
                           loginProfile.port.map((item) => (
                             <div className={`col ${styles.porto}`}>
-                              <span className={styles.delete}>Delete</span>
+                              <span onClick={onDeleteMessage} className={styles.delete}>
+                                Delete
+                              </span>
                               <img className={"img-fluid " + styles.shadow} src={item.image} alt="" />
                               <p className={styles.portfolioName}>{item.aplicationname}</p>
                             </div>
