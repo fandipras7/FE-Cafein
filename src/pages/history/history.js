@@ -89,7 +89,7 @@ const History = () => {
                             </ButtonAlter>
                             <ButtonAlter>Reject</ButtonAlter>
 
-                            <ButtonAlter onClick={() => navigate(`/recruiterProfile/`)} className="ms-2">
+                            <ButtonAlter onClick={() => navigate(`/recruiterProfile/${item.idcompany}`)} className="ms-2">
                               Look Company Profile
                             </ButtonAlter>
                           </div>
