@@ -21,7 +21,7 @@ const Home = () => {
 
   const [page, setPage] = useState({
     currentPage: 1,
-    limit: 5,
+    limit: 8,
     keyword,
   });
 
