@@ -174,9 +174,9 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Related Project
 
-:rocket: [`Backend Hire Job`](https://github.com/Candra-Julius/Cafein-BackEnd)
+:rocket: [`Backend Hire Job`](https://github.com/fandipras7/Cafein-BackEnd)
 
-:rocket: [`Frontend Hire Job`](https://github.com/NisrinaNataraharja/FE-Cafein)
+:rocket: [`Frontend Hire Job`](https://github.com/fandipras7/FE-Cafein)
 
 :rocket: [`Web Service`](https://hire-job-app.herokuapp.com)
 
