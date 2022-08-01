@@ -51,7 +51,7 @@
 
 ## About The Project
 
-**Hire Job** a web application that implements a multi-user system where users can register as recruiters or workers whose main feature is that users can search for job vacancies or users can recruit workers registered on the hirejob website according to the skills sought.
+**Hire Job** is a simple job website that can facilitating company to recruit talented programmer based on skills that company needed. It also provide programmer to show their portofolio so they can get recruited by some company.
 
 ### Built With
 
@@ -149,7 +149,7 @@ REACT_APP_API_URL = [API_URL]
   </tr>
   <tr>
     <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659171988/portofolio/Hirejob/Hiring_u1pfua.png" width=100%></td>
-    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659174132/portofolio/Hirejob/History_q44za6.png" alt="Home2" width=100%/></td>
+    <td><image src="https://res.cloudinary.com/dbpfwb5ok/image/upload/v1659355457/portofolio/Hirejob/History_a8ksmv.png" alt="Home2" width=100%/></td>
   </tr>
   <tr>
     <td>Hiring</td>
